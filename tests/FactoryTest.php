@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Conia\Route\Tests;
+namespace Conia\Core\Tests;
 
-use Conia\Cms\Exception\RuntimeException;
-use Conia\Cms\Factory\Guzzle;
-use Conia\Cms\Factory\Laminas;
-use Conia\Cms\Factory\Nyholm;
-use Conia\Cms\Tests\Setup\TestCase;
+use Conia\Core\Factory\Guzzle;
+use Conia\Core\Factory\Laminas;
+use Conia\Core\Factory\Nyholm;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
-use stdClass;
 
 final class FactoryTest extends TestCase
 {
@@ -32,15 +29,14 @@ final class FactoryTest extends TestCase
         $response = $factory->response();
         $this->assertInstanceOf(\Nyholm\Psr7\Response::class, $response);
 
-        $response = $factory->response(404, 'changed phrase', 'the body');
+        $response = $factory->response(404, 'changed phrase');
         $this->assertEquals('changed phrase', $response->getReasonPhrase());
         $this->assertEquals(404, $response->getStatusCode());
-        $this->assertEquals('the body', (string)$response->getBody());
 
         $stream = $factory->stream();
         $this->assertInstanceOf(\Nyholm\Psr7\Stream::class, $stream);
 
-        $stream = $factory->stream(fopen('php://temp', 'r+'));
+        $stream = $factory->streamFromResource(fopen('php://temp', 'r+'));
         $this->assertInstanceOf(\Nyholm\Psr7\Stream::class, $stream);
 
         $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/image.webp');
@@ -60,13 +56,6 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory);
     }
 
-    public function testNyholmStreamFailing(): void
-    {
-        $this->throws(RuntimeException::class, 'Only strings');
-
-        (new Nyholm())->stream(new stdClass());
-    }
-
     public function testGuzzle(): void
     {
         $factory = new Guzzle();
@@ -80,15 +69,14 @@ final class FactoryTest extends TestCase
         $response = $factory->response();
         $this->assertInstanceOf(\GuzzleHttp\Psr7\Response::class, $response);
 
-        $response = $factory->response(404, 'changed phrase', 'the body');
+        $response = $factory->response(404, 'changed phrase');
         $this->assertEquals('changed phrase', $response->getReasonPhrase());
         $this->assertEquals(404, $response->getStatusCode());
-        $this->assertEquals('the body', (string)$response->getBody());
 
         $stream = $factory->stream();
         $this->assertInstanceOf(\GuzzleHttp\Psr7\Stream::class, $stream);
 
-        $stream = $factory->stream(fopen('php://temp', 'r+'));
+        $stream = $factory->streamFromResource(fopen('php://temp', 'r+'));
         $this->assertInstanceOf(\GuzzleHttp\Psr7\Stream::class, $stream);
 
         $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/image.webp');
@@ -108,13 +96,6 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory);
     }
 
-    public function testGuzzleStreamFailing(): void
-    {
-        $this->throws(RuntimeException::class, 'Only strings');
-
-        (new Guzzle())->stream(new stdClass());
-    }
-
     public function testLaminas(): void
     {
         $factory = new Laminas();
@@ -128,15 +109,14 @@ final class FactoryTest extends TestCase
         $response = $factory->response();
         $this->assertInstanceOf(\Laminas\Diactoros\Response::class, $response);
 
-        $response = $factory->response(404, 'changed phrase', 'the body');
+        $response = $factory->response(404, 'changed phrase');
         $this->assertEquals('changed phrase', $response->getReasonPhrase());
         $this->assertEquals(404, $response->getStatusCode());
-        $this->assertEquals('the body', (string)$response->getBody());
 
         $stream = $factory->stream();
         $this->assertInstanceOf(\Laminas\Diactoros\Stream::class, $stream);
 
-        $stream = $factory->stream(fopen('php://temp', 'r+'));
+        $stream = $factory->streamFromResource(fopen('php://temp', 'r+'));
         $this->assertInstanceOf(\Laminas\Diactoros\Stream::class, $stream);
 
         $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/image.webp');
@@ -154,12 +134,5 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf(StreamFactoryInterface::class, $factory->streamFactory);
         $this->assertInstanceOf(UploadedFileFactoryInterface::class, $factory->uploadedFileFactory);
         $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory);
-    }
-
-    public function testLaminasStreamFailing(): void
-    {
-        $this->throws(RuntimeException::class, 'Only strings');
-
-        (new Laminas())->stream(new stdClass());
     }
 }
