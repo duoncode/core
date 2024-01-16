@@ -6,11 +6,6 @@ namespace Conia\Core;
 
 use Closure;
 use Conia\Core\Factory;
-use Conia\Core\Middleware\InitRequest;
-use Conia\Error\ErrorRenderer;
-use Conia\Error\Handler;
-use Conia\Quma\Connection;
-use Conia\Quma\Database;
 use Conia\Registry\Entry;
 use Conia\Registry\Registry;
 use Conia\Route\AddsBeforeAfter;
@@ -20,7 +15,6 @@ use Conia\Route\Group;
 use Conia\Route\Route;
 use Conia\Route\RouteAdder;
 use Conia\Route\Router;
-use PDO;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Log\LoggerInterface as Logger;
@@ -32,7 +26,6 @@ class App implements RouteAdder
     use AddsBeforeAfter;
 
     protected readonly Dispatcher $dispatcher;
-    protected readonly Database $db;
 
     public function __construct(
         protected readonly Config $config,
@@ -44,7 +37,7 @@ class App implements RouteAdder
         $this->initializeRegistry();
     }
 
-    public function plugin(Plugin $plugin): void
+    public function load(Plugin $plugin): void
     {
         $plugin->load($this);
     }
@@ -52,8 +45,6 @@ class App implements RouteAdder
     public static function create(Config $config, Factory $factory): static
     {
         $app = new static($config, $factory, new Router(), new Registry());
-        $app->middleware(new Handler($factory->responseFactory));
-        $app->middleware(new InitRequest($config));
 
         return $app;
     }
@@ -61,11 +52,6 @@ class App implements RouteAdder
     public function router(): Router
     {
         return $this->router;
-    }
-
-    public function registry(): Registry
-    {
-        return $this->registry;
     }
 
     public function factory(): Factory
@@ -116,6 +102,11 @@ class App implements RouteAdder
     public function logger(callable $callback): void
     {
         $this->registry->add(Logger::class, Closure::fromCallable($callback));
+    }
+
+    public function registry(): Registry
+    {
+        return $this->registry;
     }
 
     /**

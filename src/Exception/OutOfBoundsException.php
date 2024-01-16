@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace Conia\Core\Exception;
 
-class OutOfBoundException extends RuntimeException implements CoreException
+class OutOfBoundsException extends RuntimeException implements CoreException
 {
 }
