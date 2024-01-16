@@ -8,7 +8,6 @@ use Conia\Core\Exception\FileNotFoundException;
 use Conia\Core\Exception\RuntimeException;
 use Conia\Route\ResponseWrapper;
 use finfo;
-use Psr\Http\Message\ResponseFactoryInterface as PsrResponseFactory;
 use Psr\Http\Message\ResponseInterface as PsrResponse;
 use Psr\Http\Message\StreamFactoryInterface as PsrStreamFactory;
 use Psr\Http\Message\StreamInterface as PsrStream;
@@ -24,9 +23,9 @@ class Response implements ResponseWrapper
     ) {
     }
 
-    public static function fromFactory(PsrResponseFactory $responseFactory, PsrStreamFactory $streamFactory): self
+    public static function fromFactory(Factory $factory): self
     {
-        return new self($responseFactory->createResponse(), $streamFactory);
+        return new self($factory->response(), $factory->streamFactory);
     }
 
     public function unwrap(): PsrResponse
