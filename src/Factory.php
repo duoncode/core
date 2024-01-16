@@ -18,11 +18,13 @@ interface Factory
 
     public function request(string $method, Uri|string $uri): Request;
 
-    public function response(int $code = 200, string $reasonPhrase = '', string|Stream $body = null): Response;
+    public function response(int $code = 200, ?string $reasonPhrase = null): Response;
 
-    public function stream(mixed $content = ''): Stream;
+    public function stream(string $content = ''): Stream;
 
     public function streamFromFile(string $filename, string $mode = 'r'): Stream;
+
+    public function streamFromResource(mixed $resource): Stream;
 
     public function uploadedFile(
         Stream $stream,

@@ -37,37 +37,28 @@ abstract class AbstractFactory implements Factory
         return $this->requestFactory->createRequest($method, $uri);
     }
 
-    public function response(int $code = 200, string $reasonPhrase = '', string|Stream $body = null): Response
+    public function response(int $code = 200, ?string $reasonPhrase = null): Response
     {
-        $response =  $this->responseFactory->createResponse($code, $reasonPhrase);
-
-        if (!is_null($body)) {
-            if (is_string($body)) {
-                $response = $response->withBody($this->streamFactory->createStream($body));
-            } else {
-                $response = $response->withBody($body);
-            }
+        if (empty($reasonPhrase)) {
+            return  $this->responseFactory->createResponse($code);
         }
 
-        return $response;
+        return  $this->responseFactory->createResponse($code, $reasonPhrase);
     }
 
-    public function stream(mixed $content = ''): Stream
+    public function stream(string|Stringable $content = ''): Stream
     {
-        if (is_string($content) || $content instanceof Stringable) {
-            return $this->streamFactory->createStream((string)$content);
-        }
-
-        if (is_resource($content)) {
-            return $this->streamFactory->createStreamFromResource($content);
-        }
-
-        throw new RuntimeException('Only strings, Stringable or resources are allowed');
+        return $this->streamFactory->createStream((string)$content);
     }
 
     public function streamFromFile(string $filename, string $mode = 'r'): Stream
     {
         return $this->streamFactory->createStreamFromFile($filename, $mode);
+    }
+
+    public function streamFromResource(mixed $resource): Stream
+    {
+        return $this->streamFactory->createStreamFromResource($resource);
     }
 
     public function uploadedFile(
