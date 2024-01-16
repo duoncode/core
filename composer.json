@@ -1,0 +1,51 @@
+{
+    "name": "conia/core",
+    "description": "Conia Core Web Framework",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ebene fünf GmbH",
+            "email": "info@ebenefuenf.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "conia/cli": "dev-main",
+        "conia/registry": "dev-main",
+        "conia/route": "@dev",
+        "laminas/laminas-httphandlerrunner": "^2.4",
+        "psr/http-message-implementation": "^1.0"
+    },
+    "require-dev": {
+        "conia/development": "^1.0",
+        "guzzlehttp/psr7": "^2",
+        "laminas/laminas-diactoros": "^2",
+        "nyholm/psr7": "^1.5",
+        "nyholm/psr7-server": "^1",
+        "phpunit/phpunit": "^10"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../conia/route"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Conia\\Core\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Conia\\Core\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
