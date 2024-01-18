@@ -47,7 +47,7 @@ class Request implements RequestWrapper
     public function form(): ?array
     {
         $body = $this->psrRequest->getParsedBody();
-        assert(is_null($body) || is_array($body));
+        assert($body === null || is_array($body));
 
         return $body;
     }
@@ -55,7 +55,7 @@ class Request implements RequestWrapper
     public function field(string $key, mixed $default = null): mixed
     {
         $body = $this->psrRequest->getParsedBody();
-        assert(is_null($body) || is_array($body));
+        assert($body === null || is_array($body));
         $error = 'Form field not found';
 
         return $this->returnOrFail($body, $key, $default, $error, func_num_args());
@@ -305,11 +305,11 @@ class Request implements RequestWrapper
         string $error,
         int $numArgs
     ): mixed {
-        if ((is_null($array) || !array_key_exists($key, $array)) && $numArgs > 1) {
+        if (($array === null || !array_key_exists($key, $array)) && $numArgs > 1) {
             return $default;
         }
 
-        assert(!is_null($array));
+        assert(!($array === null));
 
         if (array_key_exists($key, $array)) {
             return $array[$key];

@@ -250,7 +250,7 @@ class Response implements ResponseWrapper
 
         $size = $stream->getSize();
 
-        if (!is_null($size)) {
+        if (!($size === null)) {
             $this->psrResponse = $this->psrResponse->withAddedHeader('Content-Length', (string)$size);
         }
 
