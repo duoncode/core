@@ -59,6 +59,11 @@ class App implements RouteAdder
         return $this->factory;
     }
 
+    public function config(): Config
+    {
+        return $this->config;
+    }
+
     /** @psalm-param Closure(Router $router):void $creator */
     public function routes(Closure $creator, string $cacheFile = '', bool $shouldCache = true): void
     {
@@ -125,6 +130,9 @@ class App implements RouteAdder
 
         $this->registry->add(Factory::class, $this->factory);
         $this->registry->add($this->factory::class, $this->factory);
+
+        $this->registry->add(Config::class, $this->config);
+        $this->registry->add($this->config::class, $this->config);
     }
 
     public function run(): Response|false
