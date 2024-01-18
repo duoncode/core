@@ -15,7 +15,7 @@
         "php": ">=8.2",
         "conia/cli": "dev-main",
         "conia/registry": "dev-main",
-        "conia/route": "@dev",
+        "conia/route": "dev-main",
         "laminas/laminas-httphandlerrunner": "^2.4",
         "psr/http-message-implementation": "^1.0"
     },
@@ -27,12 +27,6 @@
         "nyholm/psr7-server": "^1",
         "phpunit/phpunit": "^10"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../../conia/route"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Conia\\Core\\": "src"
