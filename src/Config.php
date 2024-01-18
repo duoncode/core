@@ -10,7 +10,6 @@ use Conia\Core\Exception\ValueError;
 class Config
 {
     public function __construct(
-        public readonly string $root,
         public readonly string $app = 'conia',
         public readonly bool $debug = false,
         public readonly string $env = '',
