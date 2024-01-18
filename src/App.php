@@ -141,7 +141,7 @@ class App implements RouteAdder
         $route = $this->router->match($request);
         $this->dispatcher->setBeforeHandlers($this->beforeHandlers);
         $this->dispatcher->setAfterHandlers($this->afterHandlers);
-        $response = $this->dispatcher->dispatch($request, $route);
+        $response = $this->dispatcher->dispatch($request, $route, $this->registry);
 
         return (new Emitter())->emit($response) ? $response : false;
     }
