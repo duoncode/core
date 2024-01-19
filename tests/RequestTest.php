@@ -24,7 +24,7 @@ final class RequestTest extends TestCase
 
     public function testUriHelpers(): void
     {
-        $request = new Request($this->request());
+        $request = new Request($this->request(server: ['REQUEST_URI' => '/albums']));
 
         $this->assertSame('/albums', $request->uri()->getPath());
         $this->assertSame('http://www.example.com/albums', (string)$request->uri());
