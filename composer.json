@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "conia/cli": "dev-main",
         "conia/registry": "dev-main",
         "conia/route": "dev-main",
