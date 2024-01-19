@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Conia\Core;
 
+/** @param non-empty-string $key */
 function env(string $key, bool|string|null $default = null): mixed
 {
     if (func_num_args() > 1) {
@@ -16,7 +17,7 @@ function env(string $key, bool|string|null $default = null): mixed
         $value = $_ENV[$key];
     }
 
-    return match (strtolower($value)) {
+    return match (strtolower((string)$value)) {
         'true' => true,
         'false' => false,
         'null' => null,
