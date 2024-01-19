@@ -45,9 +45,9 @@ class App implements RouteAdder
         $plugin->load($this);
     }
 
-    public static function create(Factory $factory, ?Config $config = null, ?Container $container = null): static
+    public static function create(Factory $factory, ?Config $config = null, ?Container $container = null): self
     {
-        $app = new static($factory, new Router(), new Registry(container: $container), $config);
+        $app = new self($factory, new Router(), new Registry(container: $container), $config);
 
         return $app;
     }
@@ -62,7 +62,7 @@ class App implements RouteAdder
         return $this->factory;
     }
 
-    public function config(): Config
+    public function config(): ?Config
     {
         return $this->config;
     }
