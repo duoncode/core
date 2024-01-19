@@ -8,6 +8,7 @@ use Conia\Core\App;
 use Conia\Core\Config;
 use Conia\Core\Factory;
 use Conia\Core\Factory\Nyholm;
+use Conia\Core\Plugin;
 use Conia\Core\Tests\Fixtures\TestContainer;
 use Conia\Core\Tests\Fixtures\TestLogger;
 use Conia\Registry\Registry;
@@ -225,5 +226,19 @@ final class AppTest extends TestCase
         $this->assertInstanceof(Config::class, $registry->get(Config::class));
         $this->assertInstanceof(Router::class, $registry->get(Router::class));
         $this->assertInstanceof(Factory::class, $registry->get(Factory::class));
+    }
+
+    public function testLoadPlugin(): void
+    {
+        $plugin = new class () implements Plugin {
+            public function load(App $app): void
+            {
+                $app->register('test-id', stdClass::class);
+            }
+        };
+        $app = $this->app();
+        $app->load($plugin);
+
+        $this->assertInstanceOf(stdClass::class, $app->registry()->get('test-id'));
     }
 }
