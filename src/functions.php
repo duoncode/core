@@ -16,11 +16,10 @@ function env(string $key, bool|string|null $default = null): mixed
         $value = $_ENV[$key];
     }
 
-    return match ($value) {
+    return match (strtolower($value)) {
         'true' => true,
         'false' => false,
         'null' => null,
-        'empty' => '',
         default => $value,
     };
 }
