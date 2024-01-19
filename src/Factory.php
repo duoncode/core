@@ -24,7 +24,7 @@ interface Factory
 
     public function request(string $method, Uri|string $uri): Request;
 
-    public function response(int $code = 200, ?string $reasonPhrase = null): Response;
+    public function response(int $code = 200, string $reasonPhrase = ''): Response;
 
     public function stream(string $content = ''): Stream;
 

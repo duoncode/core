@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Conia\Core\Factory;
 
+use Conia\Core\Exception\ValueError;
 use Conia\Core\Factory;
 use Psr\Http\Message\RequestFactoryInterface as Requestfactory;
 use Psr\Http\Message\RequestInterface as Request;
@@ -36,9 +37,9 @@ abstract class AbstractFactory implements Factory
         return $this->requestFactory->createRequest($method, $uri);
     }
 
-    public function response(int $code = 200, ?string $reasonPhrase = null): Response
+    public function response(int $code = 200, string $reasonPhrase = ''): Response
     {
-        if (empty($reasonPhrase)) {
+        if ($reasonPhrase === '') {
             return  $this->responseFactory->createResponse($code);
         }
 
@@ -57,7 +58,11 @@ abstract class AbstractFactory implements Factory
 
     public function streamFromResource(mixed $resource): Stream
     {
-        return $this->streamFactory->createStreamFromResource($resource);
+        if (is_resource($resource)) {
+            return $this->streamFactory->createStreamFromResource($resource);
+        }
+
+        throw new ValueError('Value must be a valid resource');
     }
 
     public function uploadedFile(

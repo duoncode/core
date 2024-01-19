@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Conia\Core\Tests;
 
+use Conia\Core\Exception\ValueError;
 use Conia\Core\Factory\Guzzle;
 use Conia\Core\Factory\Laminas;
 use Conia\Core\Factory\Nyholm;
@@ -56,6 +57,14 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory());
     }
 
+    public function testNyholmFailingResource(): void
+    {
+        $this->throws(ValueError::class);
+
+        $factory = new Nyholm();
+        $factory->streamFromResource('wrong');
+    }
+
     public function testGuzzle(): void
     {
         $factory = new Guzzle();
@@ -96,6 +105,14 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory());
     }
 
+    public function testGuzzleFailingResource(): void
+    {
+        $this->throws(ValueError::class);
+
+        $factory = new Guzzle();
+        $factory->streamFromResource('wrong');
+    }
+
     public function testLaminas(): void
     {
         $factory = new Laminas();
@@ -134,5 +151,13 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf(StreamFactoryInterface::class, $factory->streamFactory());
         $this->assertInstanceOf(UploadedFileFactoryInterface::class, $factory->uploadedFileFactory());
         $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory());
+    }
+
+    public function testLaminasFailingResource(): void
+    {
+        $this->throws(ValueError::class);
+
+        $factory = new Laminas();
+        $factory->streamFromResource('wrong');
     }
 }
