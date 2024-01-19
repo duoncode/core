@@ -23,7 +23,7 @@ class Response implements ResponseWrapper
     ) {
     }
 
-    public static function fromFactory(Factory $factory): self
+    public static function create(Factory $factory): self
     {
         return new self($factory->response(), $factory->streamFactory);
     }

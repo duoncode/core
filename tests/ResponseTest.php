@@ -7,7 +7,6 @@ namespace Conia\Core\Tests;
 use Conia\Core\Exception\FileNotFoundException;
 use Conia\Core\Exception\RuntimeException;
 use Conia\Core\Response;
-use PHPUnit\Framework\Attributes\Group as G;
 use stdClass;
 
 final class ResponseTest extends TestCase
@@ -26,7 +25,6 @@ final class ResponseTest extends TestCase
         $this->assertNotSame($psr, $response->unwrap());
     }
 
-    #[G('only')]
     public function testGetStatusCode(): void
     {
         $response = new Response($this->response());
@@ -157,7 +155,7 @@ final class ResponseTest extends TestCase
     {
         $fh = fopen('php://temp', 'r+');
         fwrite($fh, '<h1>Chuck resource</h1>');
-        $response = Response::fromFactory($this->factory())
+        $response = Response::create($this->factory())
             ->withContentType('text/html', $fh, 404, 'The Phrase');
 
         $this->assertSame('<h1>Chuck resource</h1>', (string)$response->getBody());
@@ -188,7 +186,7 @@ final class ResponseTest extends TestCase
 
     public function testWithContentTypeFromStringable(): void
     {
-        $response = Response::fromFactory($this->factory())->withContentType(
+        $response = Response::create($this->factory())->withContentType(
             'text/html',
             new class () {
                 public function __toString(): string
@@ -216,12 +214,12 @@ final class ResponseTest extends TestCase
     {
         $this->throws(RuntimeException::class, 'strings, Stringable or resources');
 
-        Response::fromFactory($this->factory())->html(new stdClass());
+        Response::create($this->factory())->html(new stdClass());
     }
 
     public function testHtmlResponse(): void
     {
-        $response = Response::fromFactory($this->factory());
+        $response = Response::create($this->factory());
         $response = $response->html('<h1>Chuck string</h1>');
 
         $this->assertSame('<h1>Chuck string</h1>', (string)$response->getBody());
@@ -230,7 +228,7 @@ final class ResponseTest extends TestCase
 
     public function testTextResponse(): void
     {
-        $response = Response::fromFactory($this->factory())->text('text');
+        $response = Response::create($this->factory())->text('text');
 
         $this->assertSame('text', (string)$response->getBody());
         $this->assertSame('text/plain', $response->getHeader('Content-Type')[0]);
@@ -238,7 +236,7 @@ final class ResponseTest extends TestCase
 
     public function testJsonResponse(): void
     {
-        $response = Response::fromFactory($this->factory())->json([1, 2, 3]);
+        $response = Response::create($this->factory())->json([1, 2, 3]);
 
         $this->assertSame('[1,2,3]', (string)$response->getBody());
         $this->assertSame('application/json', $response->getHeader('Content-Type')[0]);
@@ -246,7 +244,7 @@ final class ResponseTest extends TestCase
 
     public function testJsonResponseTraversable(): void
     {
-        $response = Response::fromFactory($this->factory())
+        $response = Response::create($this->factory())
             ->json(
                 (function () {
                     $arr = [13, 31, 73];
@@ -263,8 +261,8 @@ final class ResponseTest extends TestCase
 
     public function testFileResponse(): void
     {
-        $file = self::FIXTURES . '/image.webp';
-        $response = Response::fromFactory($this->factory())->file($file);
+        $file = self::FIXTURES . '/public/image.webp';
+        $response = Response::create($this->factory())->file($file);
 
         $this->assertSame('image/webp', $response->getHeader('Content-Type')[0]);
         $this->assertSame((string)filesize($file), $response->getHeader('Content-Length')[0]);
@@ -272,8 +270,8 @@ final class ResponseTest extends TestCase
 
     public function testFileDownloadResponse(): void
     {
-        $file = self::FIXTURES . '/image.webp';
-        $response = Response::fromFactory($this->factory())->download($file);
+        $file = self::FIXTURES . '/public/image.webp';
+        $response = Response::create($this->factory())->download($file);
 
         $this->assertSame('image/webp', $response->getHeader('Content-Type')[0]);
         $this->assertSame((string)filesize($file), $response->getHeader('Content-Length')[0]);
@@ -282,8 +280,8 @@ final class ResponseTest extends TestCase
 
     public function testFileDownloadResponseWithChangedName(): void
     {
-        $file = self::FIXTURES . '/image.webp';
-        $response = Response::fromFactory($this->factory())->download($file, 'newname.jpg');
+        $file = self::FIXTURES . '/public/image.webp';
+        $response = Response::create($this->factory())->download($file, 'newname.jpg');
 
         $this->assertSame('image/webp', $response->getHeader('Content-Type')[0]);
         $this->assertSame((string)filesize($file), $response->getHeader('Content-Length')[0]);
@@ -294,14 +292,14 @@ final class ResponseTest extends TestCase
     {
         $_SERVER['SERVER_SOFTWARE'] = 'nginx';
 
-        $file = self::FIXTURES . '/image.webp';
-        $response = Response::fromFactory($this->factory())->sendfile($file);
+        $file = self::FIXTURES . '/public/image.webp';
+        $response = Response::create($this->factory())->sendfile($file);
 
         $this->assertSame($file, $response->getHeader('X-Accel-Redirect')[0]);
 
         $_SERVER['SERVER_SOFTWARE'] = 'apache';
 
-        $response = Response::fromFactory($this->factory())->sendfile($file);
+        $response = Response::create($this->factory())->sendfile($file);
 
         $this->assertSame($file, $response->getHeader('X-Sendfile')[0]);
 
@@ -313,6 +311,6 @@ final class ResponseTest extends TestCase
         $this->throws(FileNotFoundException::class, 'File not found');
 
         $file = self::FIXTURES . '/public/static/pixel.jpg';
-        Response::fromFactory($this->factory())->file($file);
+        Response::create($this->factory())->file($file);
     }
 }
