@@ -1,0 +1,18 @@
+site_name: Conia Registry
+copyright: © 2023-2024 ebene fünf GmbH
+nav:
+  - Documentation:
+    - index.md
+theme:
+    name: conia
+repo_url: https://github.com/coniadev/registry
+extra:
+    project: Registry
+plugins:
+    - search
+    - macros:
+        module_name: docs/main
+markdown_extensions:
+    - admonition
+    - pymdownx.snippets:
+        base_path: [".", "docs/code"]

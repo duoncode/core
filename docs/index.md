@@ -1,3 +1,6 @@
+---
+title: Introduction
+---
 Conia Core
 ==========
 
@@ -8,11 +11,16 @@ Conia Core
 
 A lightweight web framework which utilizes PSR components.
 
-Incomplete documentation can be found on the website: [conia.dev/core](https://conia.dev/core/)
+## Basic usage
 
-## License
+```
+--8<-- "basic-usage-app.php:7:43"
+```
 
-Conia Core is released under the MIT [license](LICENSE.md).
+```
+--8<-- "basic-usage-param.php:7"
+```
 
-Copyright © 2024 ebene fünf GmbH. All rights reserved.
-
+```
+--8<-- "basic-usage-index.php:7"
+```
