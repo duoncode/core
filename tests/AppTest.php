@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Conia\Core\Tests;
 
 use Conia\Core\App;
-use Conia\Core\Config;
 use Conia\Core\Factory;
 use Conia\Core\Factory\Nyholm;
 use Conia\Core\Plugin;
+use Conia\Core\Tests\Fixtures\TestConfig;
 use Conia\Core\Tests\Fixtures\TestContainer;
 use Conia\Core\Tests\Fixtures\TestLogger;
 use Conia\Registry\Registry;
@@ -26,16 +26,16 @@ final class AppTest extends TestCase
 {
     public function testCreateHelper(): void
     {
-        $this->assertInstanceOf(App::class, App::create(new Config(), new Nyholm()));
+        $this->assertInstanceOf(App::class, App::create(new Nyholm(), new TestConfig()));
     }
 
     public function testHelperMethods(): void
     {
-        $app = App::create(new Config(), new Nyholm());
+        $app = App::create(new Nyholm(), new TestConfig());
 
         $this->assertInstanceOf(Registry::class, $app->registry());
         $this->assertInstanceOf(Router::class, $app->router());
-        $this->assertInstanceOf(Config::class, $app->config());
+        $this->assertInstanceOf(TestConfig::class, $app->config());
         $this->assertInstanceOf(Factory::class, $app->factory());
         $this->assertInstanceOf(Nyholm::class, $app->factory());
     }
@@ -44,7 +44,7 @@ final class AppTest extends TestCase
     {
         $container = new TestContainer();
         $container->add('external', new stdClass());
-        $app = App::create(new Config(), new Nyholm(), $container);
+        $app = App::create(new Nyholm(), new TestConfig(), $container);
 
         $this->assertInstanceof(stdClass::class, $app->registry()->get('external'));
     }
@@ -57,7 +57,7 @@ final class AppTest extends TestCase
                 return $handler->handle($request);
             }
         };
-        $app = App::create(new Config(), new Nyholm());
+        $app = App::create(new Nyholm(), new TestConfig());
         $app->middleware($middleware);
 
         $this->assertSame(1, count($app->getMiddleware()));
@@ -66,8 +66,7 @@ final class AppTest extends TestCase
 
     public function testStaticRouteHelper(): void
     {
-        $app = App::create(new Config(), new Nyholm());
-        error_log("{$this->root}/public/static");
+        $app = App::create(new Nyholm(), new TestConfig());
         $app->staticRoute('/static', "{$this->root}/public/static", 'static');
         $app->staticRoute('/unnamedstatic', "{$this->root}/public/static");
 
@@ -223,7 +222,7 @@ final class AppTest extends TestCase
         $app = $this->app();
         $registry = $app->registry();
 
-        $this->assertInstanceof(Config::class, $registry->get(Config::class));
+        $this->assertInstanceof(TestConfig::class, $registry->get(TestConfig::class));
         $this->assertInstanceof(Router::class, $registry->get(Router::class));
         $this->assertInstanceof(Factory::class, $registry->get(Factory::class));
     }

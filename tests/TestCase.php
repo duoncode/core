@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Conia\Core\Tests;
 
 use Conia\Core\App;
-use Conia\Core\Config;
 use Conia\Core\Factory;
 use Conia\Core\Factory\Nyholm;
+use Conia\Core\Tests\Fixtures\TestConfig;
 use Conia\Registry\Registry;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\TestCase as BaseTestCase;
@@ -29,7 +29,7 @@ class TestCase extends BaseTestCase
 
     public function app(): App
     {
-        return App::create(new Config(), new Nyholm());
+        return App::create(new Nyholm(), new TestConfig());
     }
 
     public function factory(): Factory

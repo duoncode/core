@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Conia\Core;
 
 use Closure;
+use Conia\Core\ConfigInterface as Config;
 use Conia\Core\Factory;
 use Conia\Registry\Entry;
 use Conia\Registry\Registry;
@@ -30,10 +31,10 @@ class App implements RouteAdder
     protected readonly Dispatcher $dispatcher;
 
     public function __construct(
-        protected readonly Config $config,
         protected readonly Factory $factory,
         protected readonly Router $router,
         protected readonly Registry $registry,
+        protected readonly ?Config $config = null,
     ) {
         $this->dispatcher = new Dispatcher();
         $this->initializeRegistry();
@@ -44,9 +45,9 @@ class App implements RouteAdder
         $plugin->load($this);
     }
 
-    public static function create(Config $config, Factory $factory, ?Container $container = null): static
+    public static function create(Factory $factory, ?Config $config = null, ?Container $container = null): static
     {
-        $app = new static($config, $factory, new Router(), new Registry(container: $container));
+        $app = new static($factory, new Router(), new Registry(container: $container), $config);
 
         return $app;
     }
@@ -142,8 +143,10 @@ class App implements RouteAdder
         $this->registry->add(Factory::class, $this->factory);
         $this->registry->add($this->factory::class, $this->factory);
 
-        $this->registry->add(Config::class, $this->config);
-        $this->registry->add($this->config::class, $this->config);
+        if ($this->config) {
+            $this->registry->add(Config::class, $this->config);
+            $this->registry->add($this->config::class, $this->config);
+        }
     }
 
     public function run(?Request $request = null): Response|false
