@@ -20,12 +20,12 @@ class Laminas extends AbstractFactory
     public function __construct()
     {
         try {
-            $this->setRequestFactory(new RequestFactory());
-            $this->setResponseFactory(new ResponseFactory());
-            $this->setServerRequestFactory(new ServerRequestFactory());
-            $this->setStreamFactory(new StreamFactory());
-            $this->setUploadedFileFactory(new UploadedFileFactory());
-            $this->setUriFactory(new UriFactory());
+            $this->requestFactory = new RequestFactory();
+            $this->responseFactory = new ResponseFactory();
+            $this->serverRequestFactory = new ServerRequestFactory();
+            $this->streamFactory = new StreamFactory();
+            $this->uploadedFileFactory = new UploadedFileFactory();
+            $this->uriFactory = new UriFactory();
             // @codeCoverageIgnoreStart
         } catch (Throwable) {
             throw new RuntimeException('Install nyholm/psr7-server');

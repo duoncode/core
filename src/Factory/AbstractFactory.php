@@ -22,12 +22,12 @@ use Stringable;
 /** @psalm-api */
 abstract class AbstractFactory implements Factory
 {
-    protected readonly RequestFactory $requestFactory;
-    protected readonly ResponseFactory $responseFactory;
-    protected readonly ServerRequestFactory $serverRequestFactory;
-    protected readonly StreamFactory $streamFactory;
-    protected readonly UploadedFileFactory $uploadedFileFactory;
-    protected readonly UriFactory $uriFactory;
+    protected RequestFactory $requestFactory;
+    protected ResponseFactory $responseFactory;
+    protected ServerRequestFactory $serverRequestFactory;
+    protected StreamFactory $streamFactory;
+    protected UploadedFileFactory $uploadedFileFactory;
+    protected UriFactory $uriFactory;
 
     abstract public function serverRequest(): ServerRequest;
 
@@ -103,35 +103,5 @@ abstract class AbstractFactory implements Factory
     public function uriFactory(): UriFactory
     {
         return $this->uriFactory;
-    }
-
-    protected function setResponseFactory(ResponseFactory $factory): void
-    {
-        $this->responseFactory = $factory;
-    }
-
-    protected function setRequestFactory(RequestFactory $factory): void
-    {
-        $this->requestFactory = $factory;
-    }
-
-    protected function setStreamFactory(StreamFactory $factory): void
-    {
-        $this->streamFactory = $factory;
-    }
-
-    protected function setServerRequestFactory(ServerRequestFactory $factory): void
-    {
-        $this->serverRequestFactory = $factory;
-    }
-
-    protected function setUploadedFileFactory(UploadedFileFactory $factory): void
-    {
-        $this->uploadedFileFactory = $factory;
-    }
-
-    protected function setUriFactory(UriFactory $factory): void
-    {
-        $this->uriFactory = $factory;
     }
 }

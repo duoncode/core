@@ -19,12 +19,12 @@ class Nyholm extends AbstractFactory
     {
         try {
             $factory =  $this->factory = new Psr17Factory();
-            $this->setResponseFactory($factory);
-            $this->setStreamFactory($factory);
-            $this->setRequestFactory($factory);
-            $this->setServerRequestFactory($factory);
-            $this->setUploadedFileFactory($factory);
-            $this->setUriFactory($factory);
+            $this->responseFactory = $factory;
+            $this->streamFactory = $factory;
+            $this->requestFactory = $factory;
+            $this->serverRequestFactory = $factory;
+            $this->uploadedFileFactory = $factory;
+            $this->uriFactory = $factory;
             // @codeCoverageIgnoreStart
         } catch (Throwable) {
             throw new RuntimeException('Install laminas/laminas-diactoros');
