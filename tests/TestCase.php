@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Conia\Core\Tests;
 
+use Conia\Core\App;
+use Conia\Core\Config;
 use Conia\Core\Factory;
 use Conia\Core\Factory\Nyholm;
+use Conia\Registry\Registry;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Psr\Http\Message\ResponseInterface as PsrResponse;
@@ -13,6 +16,8 @@ use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 
 class TestCase extends BaseTestCase
 {
+    public string $root = __DIR__ . '/Fixtures';
+
     public function throws(string $exception, string $message = null): void
     {
         $this->expectException($exception);
@@ -22,9 +27,19 @@ class TestCase extends BaseTestCase
         }
     }
 
+    public function app(): App
+    {
+        return App::create(new Config(), new Nyholm());
+    }
+
     public function factory(): Factory
     {
         return new Nyholm();
+    }
+
+    public function Registry(): Registry
+    {
+        return new Registry();
     }
 
     public function response(): PsrResponse
@@ -63,13 +78,13 @@ class TestCase extends BaseTestCase
             'HTTP_HOST' => $headers['Host'],
             'HTTP_REFERER' => $headers['Referer'],
             'HTTP_USER_AGENT' => $headers['User-Agent'],
-            'PHP_SELF' => '/albums/index.php',
+            'PHP_SELF' => '/index.php',
             'REMOTE_ADDR' => '217.254.27.52',
             'REMOTE_PORT' => '73231',
             'REQUEST_METHOD' => 'GET',
             'REQUEST_SCHEME' => 'http',
             'REQUEST_TIME' => '1696692392',
-            'REQUEST_URI' => '/albums',
+            'REQUEST_URI' => '/',
             'SCRIPT_FILENAME' => '/var/www/albums/index.php',
             'SCRIPT_NAME' => '/albums/index.php',
             'SERVER_ADDR' => '173.230.13.213',

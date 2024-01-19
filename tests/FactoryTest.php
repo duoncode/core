@@ -39,7 +39,7 @@ final class FactoryTest extends TestCase
         $stream = $factory->streamFromResource(fopen('php://temp', 'r+'));
         $this->assertInstanceOf(\Nyholm\Psr7\Stream::class, $stream);
 
-        $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/image.webp');
+        $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/public/image.webp');
         $this->assertInstanceOf(\Nyholm\Psr7\Stream::class, $stream);
 
         $uri = $factory->uri('http://example.com');
@@ -79,7 +79,7 @@ final class FactoryTest extends TestCase
         $stream = $factory->streamFromResource(fopen('php://temp', 'r+'));
         $this->assertInstanceOf(\GuzzleHttp\Psr7\Stream::class, $stream);
 
-        $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/image.webp');
+        $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/public/image.webp');
         $this->assertInstanceOf(\GuzzleHttp\Psr7\Stream::class, $stream);
 
         $uri = $factory->uri('http://example.com');
@@ -119,7 +119,7 @@ final class FactoryTest extends TestCase
         $stream = $factory->streamFromResource(fopen('php://temp', 'r+'));
         $this->assertInstanceOf(\Laminas\Diactoros\Stream::class, $stream);
 
-        $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/image.webp');
+        $stream = $factory->streamFromFile(__DIR__ . '/Fixtures/public/image.webp');
         $this->assertInstanceOf(\Laminas\Diactoros\Stream::class, $stream);
 
         $uri = $factory->uri('http://example.com');
