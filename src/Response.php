@@ -25,7 +25,7 @@ class Response implements ResponseWrapper
 
     public static function create(Factory $factory): self
     {
-        return new self($factory->response(), $factory->streamFactory);
+        return new self($factory->response(), $factory->streamFactory());
     }
 
     public function unwrap(): PsrResponse
@@ -40,9 +40,9 @@ class Response implements ResponseWrapper
         return $this;
     }
 
-    public function status(int $statusCode, ?string $reasonPhrase = null): static
+    public function status(int $statusCode, string $reasonPhrase = ''): static
     {
-        if (empty($reasonPhrase)) {
+        if ($reasonPhrase === '') {
             $this->psrResponse = $this->psrResponse->withStatus($statusCode);
         } else {
             $this->psrResponse = $this->psrResponse->withStatus($statusCode, $reasonPhrase);
@@ -190,7 +190,7 @@ class Response implements ResponseWrapper
             ->withStatus($code, $reasonPhrase)
             ->withAddedHeader('Content-Type', $contentType);
 
-        if ($body) {
+        if ($body !== null) {
             $this->body($body);
         }
 

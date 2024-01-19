@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Conia\Core\Factory;
 
-use Conia\Core\Exception\RuntimeException;
 use Conia\Core\Factory;
 use Psr\Http\Message\RequestFactoryInterface as Requestfactory;
 use Psr\Http\Message\RequestInterface as Request;
@@ -23,12 +22,12 @@ use Stringable;
 /** @psalm-api */
 abstract class AbstractFactory implements Factory
 {
-    public readonly RequestFactory $requestFactory;
-    public readonly ResponseFactory $responseFactory;
-    public readonly ServerRequestFactory $serverRequestFactory;
-    public readonly StreamFactory $streamFactory;
-    public readonly UploadedFileFactory $uploadedFileFactory;
-    public readonly UriFactory $uriFactory;
+    protected readonly RequestFactory $requestFactory;
+    protected readonly ResponseFactory $responseFactory;
+    protected readonly ServerRequestFactory $serverRequestFactory;
+    protected readonly StreamFactory $streamFactory;
+    protected readonly UploadedFileFactory $uploadedFileFactory;
+    protected readonly UriFactory $uriFactory;
 
     abstract public function serverRequest(): ServerRequest;
 
@@ -74,6 +73,36 @@ abstract class AbstractFactory implements Factory
     public function uri(string $uri = ''): Uri
     {
         return $this->uriFactory->createUri($uri);
+    }
+
+    public function responseFactory(): ResponseFactory
+    {
+        return $this->responseFactory;
+    }
+
+    public function requestFactory(): RequestFactory
+    {
+        return $this->requestFactory;
+    }
+
+    public function streamFactory(): StreamFactory
+    {
+        return $this->streamFactory;
+    }
+
+    public function serverRequestFactory(): ServerRequestFactory
+    {
+        return $this->serverRequestFactory;
+    }
+
+    public function uploadedFileFactory(): UploadedFileFactory
+    {
+        return $this->uploadedFileFactory;
+    }
+
+    public function uriFactory(): UriFactory
+    {
+        return $this->uriFactory;
     }
 
     protected function setResponseFactory(ResponseFactory $factory): void

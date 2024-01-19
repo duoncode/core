@@ -35,7 +35,7 @@ final class ResponseTest extends TestCase
 
     public function testSetStatusCode(): void
     {
-        $response = new Response($this->response(), $this->factory()->streamFactory);
+        $response = new Response($this->response(), $this->factory()->streamFactory());
         $response->status(404);
 
         $this->assertSame(404, $response->getStatusCode());
@@ -44,7 +44,7 @@ final class ResponseTest extends TestCase
 
     public function testSetStatusCodeAndReasonPhrase(): void
     {
-        $response = new Response($this->response(), $this->factory()->streamFactory);
+        $response = new Response($this->response(), $this->factory()->streamFactory());
         $response->status(404, 'Nothing to see');
 
         $this->assertSame(404, $response->getStatusCode());
@@ -53,7 +53,7 @@ final class ResponseTest extends TestCase
 
     public function testProtocolVersion(): void
     {
-        $response = new Response($this->response(), $this->factory()->streamFactory);
+        $response = new Response($this->response(), $this->factory()->streamFactory());
 
         $this->assertSame('1.1', $response->getProtocolVersion());
 
@@ -65,7 +65,7 @@ final class ResponseTest extends TestCase
     public function testCreateWithStringBody(): void
     {
         $text = 'text';
-        $response = (new Response($this->response(), $this->factory()->streamFactory))->write($text);
+        $response = (new Response($this->response(), $this->factory()->streamFactory()))->write($text);
         $this->assertSame($text, (string)$response->getBody());
     }
 
@@ -86,7 +86,7 @@ final class ResponseTest extends TestCase
 
     public function testSetBodyWithStringUsingFactory(): void
     {
-        $response = new Response($this->response(), $this->factory()->streamFactory);
+        $response = new Response($this->response(), $this->factory()->streamFactory());
         $response->body('Chuck text using factory');
         $this->assertSame('Chuck text using factory', (string)$response->getBody());
     }
@@ -115,7 +115,7 @@ final class ResponseTest extends TestCase
 
     public function testGetHeader(): void
     {
-        $response = new Response($this->response(), $this->factory()->streamFactory);
+        $response = new Response($this->response(), $this->factory()->streamFactory());
         $response = $response->header('header-value', 'value');
 
         $this->assertSame('value', $response->getHeader('Header-Value')[0]);
@@ -123,7 +123,7 @@ final class ResponseTest extends TestCase
 
     public function testRemoveHeader(): void
     {
-        $response = new Response($this->response(), $this->factory()->streamFactory);
+        $response = new Response($this->response(), $this->factory()->streamFactory());
         $response->header('header-value', 'value');
 
         $this->assertSame(true, $response->hasHeader('Header-Value'));
@@ -135,7 +135,7 @@ final class ResponseTest extends TestCase
 
     public function testRedirectTemporary(): void
     {
-        $response = new Response($this->response(), $this->factory()->streamFactory);
+        $response = new Response($this->response(), $this->factory()->streamFactory());
         $response->redirect('/chuck');
 
         $this->assertSame(302, $response->getStatusCode());
@@ -144,7 +144,7 @@ final class ResponseTest extends TestCase
 
     public function testRedirectPermanent(): void
     {
-        $response = new Response($this->response(), $this->factory()->streamFactory);
+        $response = new Response($this->response(), $this->factory()->streamFactory());
         $response->redirect('/chuck', 301);
 
         $this->assertSame(301, $response->getStatusCode());

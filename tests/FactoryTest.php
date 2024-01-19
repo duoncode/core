@@ -48,12 +48,12 @@ final class FactoryTest extends TestCase
         $uploadedFile = $factory->uploadedFile($stream);
         $this->assertInstanceOf(\Nyholm\Psr7\UploadedFile::class, $uploadedFile);
 
-        $this->assertInstanceOf(RequestFactoryInterface::class, $factory->requestFactory);
-        $this->assertInstanceOf(ServerRequestFactoryInterface::class, $factory->serverRequestFactory);
-        $this->assertInstanceOf(ResponseFactoryInterface::class, $factory->responseFactory);
-        $this->assertInstanceOf(StreamFactoryInterface::class, $factory->streamFactory);
-        $this->assertInstanceOf(UploadedFileFactoryInterface::class, $factory->uploadedFileFactory);
-        $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory);
+        $this->assertInstanceOf(RequestFactoryInterface::class, $factory->requestFactory());
+        $this->assertInstanceOf(ServerRequestFactoryInterface::class, $factory->serverRequestFactory());
+        $this->assertInstanceOf(ResponseFactoryInterface::class, $factory->responseFactory());
+        $this->assertInstanceOf(StreamFactoryInterface::class, $factory->streamFactory());
+        $this->assertInstanceOf(UploadedFileFactoryInterface::class, $factory->uploadedFileFactory());
+        $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory());
     }
 
     public function testGuzzle(): void
@@ -88,12 +88,12 @@ final class FactoryTest extends TestCase
         $uploadedFile = $factory->uploadedFile($stream);
         $this->assertInstanceOf(\GuzzleHttp\Psr7\UploadedFile::class, $uploadedFile);
 
-        $this->assertInstanceOf(RequestFactoryInterface::class, $factory->requestFactory);
-        $this->assertInstanceOf(ServerRequestFactoryInterface::class, $factory->serverRequestFactory);
-        $this->assertInstanceOf(ResponseFactoryInterface::class, $factory->responseFactory);
-        $this->assertInstanceOf(StreamFactoryInterface::class, $factory->streamFactory);
-        $this->assertInstanceOf(UploadedFileFactoryInterface::class, $factory->uploadedFileFactory);
-        $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory);
+        $this->assertInstanceOf(RequestFactoryInterface::class, $factory->requestFactory());
+        $this->assertInstanceOf(ServerRequestFactoryInterface::class, $factory->serverRequestFactory());
+        $this->assertInstanceOf(ResponseFactoryInterface::class, $factory->responseFactory());
+        $this->assertInstanceOf(StreamFactoryInterface::class, $factory->streamFactory());
+        $this->assertInstanceOf(UploadedFileFactoryInterface::class, $factory->uploadedFileFactory());
+        $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory());
     }
 
     public function testLaminas(): void
@@ -128,11 +128,11 @@ final class FactoryTest extends TestCase
         $uploadedFile = $factory->uploadedFile($stream);
         $this->assertInstanceOf(\Laminas\Diactoros\UploadedFile::class, $uploadedFile);
 
-        $this->assertInstanceOf(RequestFactoryInterface::class, $factory->requestFactory);
-        $this->assertInstanceOf(ServerRequestFactoryInterface::class, $factory->serverRequestFactory);
-        $this->assertInstanceOf(ResponseFactoryInterface::class, $factory->responseFactory);
-        $this->assertInstanceOf(StreamFactoryInterface::class, $factory->streamFactory);
-        $this->assertInstanceOf(UploadedFileFactoryInterface::class, $factory->uploadedFileFactory);
-        $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory);
+        $this->assertInstanceOf(RequestFactoryInterface::class, $factory->requestFactory());
+        $this->assertInstanceOf(ServerRequestFactoryInterface::class, $factory->serverRequestFactory());
+        $this->assertInstanceOf(ResponseFactoryInterface::class, $factory->responseFactory());
+        $this->assertInstanceOf(StreamFactoryInterface::class, $factory->streamFactory());
+        $this->assertInstanceOf(UploadedFileFactoryInterface::class, $factory->uploadedFileFactory());
+        $this->assertInstanceOf(UriFactoryInterface::class, $factory->uriFactory());
     }
 }
