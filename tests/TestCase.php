@@ -37,7 +37,7 @@ class TestCase extends BaseTestCase
         return new Nyholm();
     }
 
-    public function Registry(): Registry
+    public function registry(): Registry
     {
         return new Registry();
     }

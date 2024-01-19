@@ -52,8 +52,10 @@ final class AppTest extends TestCase
     public function testMiddlewareHelper(): void
     {
         $middleware = new class () implements MiddlewareInterface {
-            public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-            {
+            public function process(
+                ServerRequestInterface $request,
+                RequestHandlerInterface $handler
+            ): ResponseInterface {
                 return $handler->handle($request);
             }
         };

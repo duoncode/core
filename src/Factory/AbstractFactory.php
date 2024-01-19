@@ -72,7 +72,13 @@ abstract class AbstractFactory implements Factory
         string $clientFilename = null,
         string $clientMediaType = null
     ): UploadedFile {
-        return $this->uploadedFileFactory->createUploadedFile($stream, $size, $error, $clientFilename, $clientMediaType);
+        return $this->uploadedFileFactory->createUploadedFile(
+            $stream,
+            $size,
+            $error,
+            $clientFilename,
+            $clientMediaType
+        );
     }
 
     public function uri(string $uri = ''): Uri
