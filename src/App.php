@@ -15,6 +15,7 @@ use Conia\Route\Group;
 use Conia\Route\Route;
 use Conia\Route\RouteAdder;
 use Conia\Route\Router;
+use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Log\LoggerInterface as Logger;
@@ -42,9 +43,9 @@ class App implements RouteAdder
         $plugin->load($this);
     }
 
-    public static function create(Config $config, Factory $factory): static
+    public static function create(Config $config, Factory $factory, ?Container $container = null): static
     {
-        $app = new static($config, $factory, new Router(), new Registry());
+        $app = new static($config, $factory, new Router(), new Registry(container: $container));
 
         return $app;
     }
