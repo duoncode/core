@@ -17,6 +17,7 @@ use Conia\Route\RouteAdder;
 use Conia\Route\Router;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Log\LoggerInterface as Logger;
 
@@ -141,9 +142,9 @@ class App implements RouteAdder
         $this->registry->add($this->config::class, $this->config);
     }
 
-    public function run(): Response|false
+    public function run(?Request $request = null): Response|false
     {
-        $request = $this->factory->serverRequest();
+        $request = $request ?? $this->factory->serverRequest();
         $route = $this->router->match($request);
         $this->dispatcher->setBeforeHandlers($this->beforeHandlers);
         $this->dispatcher->setAfterHandlers($this->afterHandlers);
