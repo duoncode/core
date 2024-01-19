@@ -6,6 +6,7 @@ namespace Conia\Core\Exception;
 
 use Throwable;
 
+/** @psalm-api */
 class HttpNotFound extends HttpError
 {
     public function __construct(

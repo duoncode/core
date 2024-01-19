@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Conia\Core;
 
+/** @psalm-api */
 interface ConfigInterface
 {
     public function set(string $key, mixed $value): void;

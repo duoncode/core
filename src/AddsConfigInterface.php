@@ -6,6 +6,7 @@ namespace Conia\Core;
 
 use Conia\Core\Exception\OutOfBoundsException;
 
+/** @psalm-api */
 trait AddsConfigInterface
 {
     protected array $settings = [];
