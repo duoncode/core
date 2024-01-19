@@ -17,7 +17,8 @@
         "conia/registry": "dev-main",
         "conia/route": "dev-main",
         "laminas/laminas-httphandlerrunner": "^2.4",
-        "psr/http-message-implementation": "^1.0"
+        "psr/http-message-implementation": "^1.0",
+        "psr/http-factory": "^1.0"
     },
     "require-dev": {
         "conia/development": "^1.0",
@@ -25,7 +26,8 @@
         "laminas/laminas-diactoros": "^2",
         "nyholm/psr7": "^1.5",
         "nyholm/psr7-server": "^1",
-        "phpunit/phpunit": "^10"
+        "phpunit/phpunit": "^10",
+        "vimeo/psalm": "^5.20.0"
     },
     "autoload": {
         "psr-4": {
