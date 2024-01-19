@@ -100,6 +100,11 @@ class App implements RouteAdder
         $this->router->addStatic($prefix, $path, $name);
     }
 
+    public function getMiddleware(): array
+    {
+        return $this->dispatcher->getMiddleware();
+    }
+
     public function middleware(Middleware ...$middleware): void
     {
         $this->dispatcher->middleware(...$middleware);
