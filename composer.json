@@ -25,7 +25,7 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "ernst/coverlyzer": "^0.1.1",
         "guzzlehttp/psr7": "^2",
-        "laminas/laminas-diactoros": "^2",
+        "laminas/laminas-diactoros": "^2 || ^3",
         "nyholm/psr7": "^1.5",
         "nyholm/psr7-server": "^1",
         "phpunit/phpunit": "^10",
