@@ -111,9 +111,13 @@ class App implements RouteAdder
         $this->dispatcher->middleware(...$middleware);
     }
 
-    public function logger(callable $callback): void
+    public function logger(Logger|callable $logger): void
     {
-        $this->registry->add(Logger::class, Closure::fromCallable($callback));
+        if ($logger instanceof Logger) {
+            $this->registry->add(Logger::class, $logger);
+        } else {
+            $this->registry->add(Logger::class, Closure::fromCallable($logger));
+        }
     }
 
     public function registry(): Registry

@@ -9,7 +9,7 @@ use Conia\Core\Config;
 use Conia\Core\Factory;
 use Conia\Core\Factory\Nyholm;
 use Conia\Core\Tests\Fixtures\TestContainer;
-use Conia\Log\Logger;
+use Conia\Core\Tests\Fixtures\TestLogger;
 use Conia\Registry\Registry;
 use Conia\Route\Group;
 use Conia\Route\Route;
@@ -195,22 +195,26 @@ final class AppTest extends TestCase
         $this->assertSame('/albums/symbolic', $app->router()->routeUrl('albums:name', ['name' => 'symbolic']));
     }
 
-    public function testAddLogger(): void
+    public function testAddLoggerInstance(): void
+    {
+        $app = $this->app();
+        $app->logger(new TestLogger());
+        $registry = $app->registry();
+        $logger = $registry->get(PsrLogger::class);
+
+        $this->assertInstanceOf(TestLogger::class, $logger);
+    }
+
+    public function testAddLoggerCallable(): void
     {
         $app = $this->app();
         $app->logger(function (): PsrLogger {
-            $logfile = $this->root . '/log/' . bin2hex(random_bytes(4)) . '.log';
-
-            return new Logger($logfile);
+            return new TestLogger();
         });
         $registry = $app->registry();
         $logger = $registry->get(PsrLogger::class);
 
-        $this->assertInstanceOf(Logger::class, $logger);
-
-        $logger2 = $registry->get(PsrLogger::class);
-
-        $this->assertSame(true, $logger === $logger2);
+        $this->assertInstanceOf(TestLogger::class, $logger);
     }
 
     public function testRegistryInitialized(): void
