@@ -95,8 +95,8 @@ final class ResponseTest extends TestCase
     {
         $this->throws(RuntimeException::class, 'not writable');
 
-        $fh = fopen('php://temp', 'r');
-        $stream = $this->factory()->streamFromResource($fh);
+        $resource = fopen('php://temp', 'r');
+        $stream = $this->factory()->streamFromResource($resource);
         $response = new Response($this->response());
         $response->body($stream);
         $response->body('try to overwrite');
@@ -153,10 +153,10 @@ final class ResponseTest extends TestCase
 
     public function testWithContentTypeFromResource(): void
     {
-        $fh = fopen('php://temp', 'r+');
-        fwrite($fh, '<h1>Chuck resource</h1>');
+        $resource = fopen('php://temp', 'r+');
+        fwrite($resource, '<h1>Chuck resource</h1>');
         $response = Response::create($this->factory())
-            ->withContentType('text/html', $fh, 404, 'The Phrase');
+            ->withContentType('text/html', $resource, 404, 'The Phrase');
 
         $this->assertSame('<h1>Chuck resource</h1>', (string)$response->getBody());
         $this->assertSame('text/html', $response->getHeader('Content-Type')[0]);
@@ -206,8 +206,8 @@ final class ResponseTest extends TestCase
     {
         $this->throws(RuntimeException::class, 'No factory available');
 
-        $fh = fopen('php://temp', 'r+');
-        (new Response($this->response()))->withContentType('text/html', $fh, 404, 'The Phrase');
+        $resource = fopen('php://temp', 'r+');
+        (new Response($this->response()))->withContentType('text/html', $resource, 404, 'The Phrase');
     }
 
     public function testWithContentTypeInvalidData(): void

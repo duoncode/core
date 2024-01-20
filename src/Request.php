@@ -104,7 +104,7 @@ class Request implements RequestWrapper
         if ($firstOnly) {
             return array_combine(
                 array_keys($headers),
-                array_map(fn (array $v): string => $v[0], $headers),
+                array_map(fn (array $val): string => $val[0], $headers),
             );
         }
 

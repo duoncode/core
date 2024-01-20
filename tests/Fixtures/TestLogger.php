@@ -14,5 +14,6 @@ class TestLogger implements LoggerInterface
 
     public function log(mixed $level, string|Stringable $message, array $context = []): void
     {
+        echo (string)$level . ' ' . $message . (string)$context;
     }
 }
