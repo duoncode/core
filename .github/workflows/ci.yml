@@ -7,11 +7,6 @@ on:
 
 jobs:
   test:
-    env:
-      CODACY_API_TOKEN: ${{secrets.CODACY_ACCOUT_TOKEN}}
-      CODACY_ORGANIZATION_PROVIDER: gh
-      CODACY_USERNAME: coniadev
-      CODACY_PROJECT_NAME: core
     runs-on: ubuntu-latest
     steps:
       - name: Setup PHP extensions
@@ -30,4 +25,9 @@ jobs:
         run: composer github
 
       - name: Upload coverage report to Codacy
+        env:
+          CODACY_API_TOKEN: ${{secrets.CODACY_ACCOUT_TOKEN}}
+          CODACY_ORGANIZATION_PROVIDER: gh
+          CODACY_USERNAME: coniadev
+          CODACY_PROJECT_NAME: core
         run: bash <(curl -Ls https://coverage.codacy.com/get.sh)
