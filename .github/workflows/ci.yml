@@ -30,4 +30,4 @@ jobs:
         run: composer github
 
       - name: Upload coverage report to Codacy
-        runt: bash <(curl -Ls https://coverage.codacy.com/get.sh)
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh)
