@@ -8,7 +8,7 @@ on:
 jobs:
   test:
     env:
-      CODACY_API_TOKEN: ${{secret.CODACY_ACCOUT_TOKEN}}
+      CODACY_API_TOKEN: ${{secrets.CODACY_ACCOUT_TOKEN}}
       CODACY_ORGANIZATION_PROVIDER: gh
       CODACY_USERNAME: coniadev
       CODACY_PROJECT_NAME: core
