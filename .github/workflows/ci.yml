@@ -26,8 +26,9 @@ jobs:
 
       - name: Upload coverage report to Codacy
         run:
-          echo "Token = $CODACY_API_TOKEN; Username = $CODACY_USERNAME"
-          bash <(curl -Ls https://coverage.codacy.com/get.sh)
+          - echo "Token = $CODACY_API_TOKEN; Username = $CODACY_USERNAME"
+          - echo "Account Token = ${{secrets.CODACY_ACCOUT_TOKEN}}"
+          - bash <(curl -Ls https://coverage.codacy.com/get.sh)
         env:
           CODACY_API_TOKEN: ${{secrets.CODACY_ACCOUT_TOKEN}}
           CODACY_ORGANIZATION_PROVIDER: gh
