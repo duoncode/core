@@ -17,21 +17,21 @@ Conia Core is a lightweight and easily extendable PHP 8.1 web framework.
 
 It features:
 
-  * Http Routing.
-  * An autowiring container used for automatic dependency injection.
-  * Middleware.
-  * Convenience wrappers for PSR request, response and middleware.
-  * Logging.
+* Http Routing.
+* An autowiring container used for automatic dependency injection.
+* Middleware.
+* Convenience wrappers for PSR request, response and middleware.
+* Logging.
 
 Supported PSRs:
 
-  * PSR-3 Logger Interface
-  * PSR-4 Autoloading
-  * PSR-7 Http Messages (Request, Response, Stream, and so on.)
-  * PSR-11 Container Interface
-  * PSR-12 Extended Coding Style
-  * PSR-15 Http Middleware
-  * PSR-17 Http Factories
+* PSR-3 Logger Interface
+* PSR-4 Autoloading
+* PSR-7 Http Messages (Request, Response, Stream, and so on.)
+* PSR-11 Container Interface
+* PSR-12 Extended Coding Style
+* PSR-15 Http Middleware
+* PSR-17 Http Factories
 
 Incomplete documentation can be found on the website: [conia.dev/core](https://conia.dev/core/)
 
