@@ -7,6 +7,11 @@ on:
 
 jobs:
   test:
+    env:
+      CODACY_API_TOKEN: ${secret.CODACY_ACCOUT_TOKEN}
+      CODACY_ORGANIZATION_PROVIDER: gh
+      CODACY_USERNAME: coniadev
+      CODACY_PROJECT_NAME: core
     runs-on: ubuntu-latest
     steps:
       - name: Setup PHP extensions
@@ -23,3 +28,6 @@ jobs:
 
       - name: Run tests, static type checker and linter
         run: composer github
+
+      - name: Upload coverage report to Codacy
+        runt: bash <(curl -Ls https://coverage.codacy.com/get.sh)
