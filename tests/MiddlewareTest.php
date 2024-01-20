@@ -25,7 +25,7 @@ final class MiddlewareTest extends TestCase
             $factory  // StreamFactory
         );
         $request = $creator->fromGlobals();
-        $rh = new class () implements RequestHandlerInterface {
+        $handler = new class () implements RequestHandlerInterface {
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 $factory = new Psr17Factory();
@@ -35,7 +35,7 @@ final class MiddlewareTest extends TestCase
                 );
             }
         };
-        $mw = new class () extends Middleware {
+        $middleware = new class () extends Middleware {
             public function handle(Request $request, callable $next): Response
             {
                 $request->set('test', 'value');
@@ -50,7 +50,7 @@ final class MiddlewareTest extends TestCase
                 return $response;
             }
         };
-        $response = $mw->process($request, $rh);
+        $response = $middleware->process($request, $handler);
 
         $this->assertSame('test:value:after', (string)$response->getBody());
     }
