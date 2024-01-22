@@ -8,7 +8,7 @@ Conia Core
 [![Psalm coverage](https://shepherd.dev/github/coniadev/core/coverage.svg?)](https://shepherd.dev/github/coniadev/core)
 
 
-Conia Core is a lightweight and easily extendable PHP 8.1 web framework.
+Conia Core is a lightweight and easily extendable >=PHP 8.3 web framework.
 
 > [!WARNING]
 > This library is under active development, some of its features are still
