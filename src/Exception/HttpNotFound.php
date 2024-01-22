@@ -4,16 +4,9 @@ declare(strict_types=1);
 
 namespace Conia\Core\Exception;
 
-use Throwable;
-
 /** @psalm-api */
 class HttpNotFound extends HttpError
 {
-    public function __construct(
-        string $message = 'Not Found',
-        int $code = 404,
-        ?Throwable $previous = null
-    ) {
-        parent::__construct($message, $code, $previous);
-    }
+    protected const int code = 404;
+    protected const string message = 'Not Found';
 }

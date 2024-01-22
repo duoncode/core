@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Conia\Core\Exception;
 
+use Conia\Core\Request;
 use Exception;
+use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 use Throwable;
 
 /**
@@ -14,36 +16,43 @@ use Throwable;
  */
 abstract class HttpError extends Exception implements CoreException
 {
-    protected mixed $payload = null;
+    /** @var int<0,599> */
+    protected const int code = 0;
+
+    /** @var string */
+    protected const string message = '';
+
+    protected ?PsrServerRequest $request;
 
     public function __construct(
+        Request|PsrServerRequest|null $request = null,
+        protected mixed $payload = null,
         string $message = '',
+        ?Throwable $previous = null,
         int $code = 0,
-        ?Throwable $previous = null
     ) {
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message ?: static::message, $code ?: static::code, $previous);
+
+        $this->request = $request instanceof Request ? $request->unwrap() : $request;
     }
 
-    public static function withPayload(mixed $payload): static
-    {
-        $exception = new static();
-        $exception->setPayload($payload);
-
-        return $exception;
-    }
-
-    public function getTitle(): string
+    public function title(): string
     {
         return (string)$this->getCode() . ' ' . $this->getMessage();
     }
 
-    public function setPayload(mixed $payload): void
-    {
-        $this->payload = $payload;
-    }
-
-    public function getPayload(): mixed
+    public function payload(): mixed
     {
         return $this->payload;
+    }
+
+    public function request(): ?PsrServerRequest
+    {
+        return $this->request;
+    }
+
+    public function statusCode(): int
+    {
+        return $this->getCode();
     }
 }
