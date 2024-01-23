@@ -236,7 +236,19 @@ class Response implements ResponseWrapper
         $this->validateFile($file);
 
         $finfo = new finfo(FILEINFO_MIME_TYPE);
-        $contentType = $finfo->file($file);
+        $contentType = match (strtolower(pathinfo($file, PATHINFO_EXTENSION))) {
+            'js' => 'text/javascript',
+            'css' => 'text/css',
+            'json' => 'application/json',
+            'html' => 'text/html',
+            'md' => 'text/markdown',
+            'markdown' => 'text/markdown',
+            'csv' => 'text/csv',
+            'xml' => 'application/xml',
+            'xhtml' => 'application/xhtml+xml',
+            default => $finfo->file($file),
+        };
+
         $finfo = new finfo(FILEINFO_MIME_ENCODING);
         $encoding = $finfo->file($file);
         assert(isset($this->streamFactory));
