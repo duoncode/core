@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core\Tests\Fixtures;
+namespace FiveOrbs\Core\Tests\Fixtures;
 
-use Conia\Core\Factory\Nyholm;
-use Conia\Core\Response;
+use FiveOrbs\Core\Factory\Nyholm;
+use FiveOrbs\Core\Response;
 
 class TestController
 {
-    public function textView(): Response
-    {
-        return Response::create(new Nyholm())->body('text');
-    }
+	public function textView(): Response
+	{
+		return Response::create(new Nyholm())->body('text');
+	}
 }

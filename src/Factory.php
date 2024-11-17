@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core;
+namespace FiveOrbs\Core;
 
 use Psr\Http\Message\RequestFactoryInterface as RequestFactory;
 use Psr\Http\Message\RequestInterface as Request;
@@ -20,37 +20,37 @@ use Psr\Http\Message\UriInterface as Uri;
 /** @psalm-api */
 interface Factory
 {
-    public function serverRequest(): ServerRequest;
+	public function serverRequest(): ServerRequest;
 
-    public function request(string $method, Uri|string $uri): Request;
+	public function request(string $method, Uri|string $uri): Request;
 
-    public function response(int $code = 200, string $reasonPhrase = ''): Response;
+	public function response(int $code = 200, string $reasonPhrase = ''): Response;
 
-    public function stream(string $content = ''): Stream;
+	public function stream(string $content = ''): Stream;
 
-    public function streamFromFile(string $filename, string $mode = 'r'): Stream;
+	public function streamFromFile(string $filename, string $mode = 'r'): Stream;
 
-    public function streamFromResource(mixed $resource): Stream;
+	public function streamFromResource(mixed $resource): Stream;
 
-    public function uploadedFile(
-        Stream $stream,
-        int $size = null,
-        int $error = \UPLOAD_ERR_OK,
-        string $clientFilename = null,
-        string $clientMediaType = null
-    ): UploadedFile;
+	public function uploadedFile(
+		Stream $stream,
+		int $size = null,
+		int $error = \UPLOAD_ERR_OK,
+		string $clientFilename = null,
+		string $clientMediaType = null,
+	): UploadedFile;
 
-    public function uri(string $uri = ''): Uri;
+	public function uri(string $uri = ''): Uri;
 
-    public function requestFactory(): RequestFactory;
+	public function requestFactory(): RequestFactory;
 
-    public function responseFactory(): ResponseFactory;
+	public function responseFactory(): ResponseFactory;
 
-    public function serverRequestFactory(): ServerRequestFactory;
+	public function serverRequestFactory(): ServerRequestFactory;
 
-    public function streamFactory(): StreamFactory;
+	public function streamFactory(): StreamFactory;
 
-    public function uploadedFileFactory(): UploadedFileFactory;
+	public function uploadedFileFactory(): UploadedFileFactory;
 
-    public function uriFactory(): UriFactory;
+	public function uriFactory(): UriFactory;
 }

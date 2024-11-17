@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core\Factory;
+namespace FiveOrbs\Core\Factory;
 
-use Conia\Core\Exception\ValueError;
-use Conia\Core\Factory;
+use FiveOrbs\Core\Exception\ValueError;
+use FiveOrbs\Core\Factory;
 use Psr\Http\Message\RequestFactoryInterface as Requestfactory;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseFactoryInterface as ResponseFactory;
@@ -23,96 +23,96 @@ use Stringable;
 /** @psalm-api */
 abstract class AbstractFactory implements Factory
 {
-    protected RequestFactory $requestFactory;
-    protected ResponseFactory $responseFactory;
-    protected ServerRequestFactory $serverRequestFactory;
-    protected StreamFactory $streamFactory;
-    protected UploadedFileFactory $uploadedFileFactory;
-    protected UriFactory $uriFactory;
+	protected RequestFactory $requestFactory;
+	protected ResponseFactory $responseFactory;
+	protected ServerRequestFactory $serverRequestFactory;
+	protected StreamFactory $streamFactory;
+	protected UploadedFileFactory $uploadedFileFactory;
+	protected UriFactory $uriFactory;
 
-    abstract public function serverRequest(): ServerRequest;
+	abstract public function serverRequest(): ServerRequest;
 
-    public function request(string $method, Uri|string $uri): Request
-    {
-        return $this->requestFactory->createRequest($method, $uri);
-    }
+	public function request(string $method, Uri|string $uri): Request
+	{
+		return $this->requestFactory->createRequest($method, $uri);
+	}
 
-    public function response(int $code = 200, string $reasonPhrase = ''): Response
-    {
-        if ($reasonPhrase === '') {
-            return  $this->responseFactory->createResponse($code);
-        }
+	public function response(int $code = 200, string $reasonPhrase = ''): Response
+	{
+		if ($reasonPhrase === '') {
+			return  $this->responseFactory->createResponse($code);
+		}
 
-        return  $this->responseFactory->createResponse($code, $reasonPhrase);
-    }
+		return  $this->responseFactory->createResponse($code, $reasonPhrase);
+	}
 
-    public function stream(string|Stringable $content = ''): Stream
-    {
-        return $this->streamFactory->createStream((string)$content);
-    }
+	public function stream(string|Stringable $content = ''): Stream
+	{
+		return $this->streamFactory->createStream((string) $content);
+	}
 
-    public function streamFromFile(string $filename, string $mode = 'r'): Stream
-    {
-        return $this->streamFactory->createStreamFromFile($filename, $mode);
-    }
+	public function streamFromFile(string $filename, string $mode = 'r'): Stream
+	{
+		return $this->streamFactory->createStreamFromFile($filename, $mode);
+	}
 
-    public function streamFromResource(mixed $resource): Stream
-    {
-        if (is_resource($resource)) {
-            return $this->streamFactory->createStreamFromResource($resource);
-        }
+	public function streamFromResource(mixed $resource): Stream
+	{
+		if (is_resource($resource)) {
+			return $this->streamFactory->createStreamFromResource($resource);
+		}
 
-        throw new ValueError('Value must be a valid resource');
-    }
+		throw new ValueError('Value must be a valid resource');
+	}
 
-    public function uploadedFile(
-        Stream $stream,
-        int $size = null,
-        int $error = \UPLOAD_ERR_OK,
-        string $clientFilename = null,
-        string $clientMediaType = null
-    ): UploadedFile {
-        return $this->uploadedFileFactory->createUploadedFile(
-            $stream,
-            $size,
-            $error,
-            $clientFilename,
-            $clientMediaType
-        );
-    }
+	public function uploadedFile(
+		Stream $stream,
+		int $size = null,
+		int $error = \UPLOAD_ERR_OK,
+		string $clientFilename = null,
+		string $clientMediaType = null,
+	): UploadedFile {
+		return $this->uploadedFileFactory->createUploadedFile(
+			$stream,
+			$size,
+			$error,
+			$clientFilename,
+			$clientMediaType,
+		);
+	}
 
-    public function uri(string $uri = ''): Uri
-    {
-        return $this->uriFactory->createUri($uri);
-    }
+	public function uri(string $uri = ''): Uri
+	{
+		return $this->uriFactory->createUri($uri);
+	}
 
-    public function responseFactory(): ResponseFactory
-    {
-        return $this->responseFactory;
-    }
+	public function responseFactory(): ResponseFactory
+	{
+		return $this->responseFactory;
+	}
 
-    public function requestFactory(): RequestFactory
-    {
-        return $this->requestFactory;
-    }
+	public function requestFactory(): RequestFactory
+	{
+		return $this->requestFactory;
+	}
 
-    public function streamFactory(): StreamFactory
-    {
-        return $this->streamFactory;
-    }
+	public function streamFactory(): StreamFactory
+	{
+		return $this->streamFactory;
+	}
 
-    public function serverRequestFactory(): ServerRequestFactory
-    {
-        return $this->serverRequestFactory;
-    }
+	public function serverRequestFactory(): ServerRequestFactory
+	{
+		return $this->serverRequestFactory;
+	}
 
-    public function uploadedFileFactory(): UploadedFileFactory
-    {
-        return $this->uploadedFileFactory;
-    }
+	public function uploadedFileFactory(): UploadedFileFactory
+	{
+		return $this->uploadedFileFactory;
+	}
 
-    public function uriFactory(): UriFactory
-    {
-        return $this->uriFactory;
-    }
+	public function uriFactory(): UriFactory
+	{
+		return $this->uriFactory;
+	}
 }

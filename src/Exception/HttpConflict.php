@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core\Exception;
+namespace FiveOrbs\Core\Exception;
 
 /** @psalm-api */
 class HttpConflict extends HttpError
 {
-    protected const int code = 409;
-    protected const string message = 'Conflict';
+	protected const int code = 409;
+	protected const string message = 'Conflict';
 }

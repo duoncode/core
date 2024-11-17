@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core\Exception;
+namespace FiveOrbs\Core\Exception;
 
-class OutOfBoundsException extends RuntimeException implements CoreException
-{
-}
+class OutOfBoundsException extends RuntimeException implements CoreException {}

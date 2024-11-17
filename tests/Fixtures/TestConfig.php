@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core\Tests\Fixtures;
+namespace FiveOrbs\Core\Tests\Fixtures;
 
-use Conia\Core\AddsConfigInterface;
-use Conia\Core\ConfigInterface;
+use FiveOrbs\Core\AddsConfigInterface;
+use FiveOrbs\Core\ConfigInterface;
 
 class TestConfig implements ConfigInterface
 {
-    use AddsConfigInterface;
+	use AddsConfigInterface;
 }

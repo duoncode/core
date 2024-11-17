@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core;
+namespace FiveOrbs\Core;
 
 interface Plugin
 {
-    public function load(App $app): void;
+	public function load(App $app): void;
 }

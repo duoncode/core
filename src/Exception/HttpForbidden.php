@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core\Exception;
+namespace FiveOrbs\Core\Exception;
 
 /** @psalm-api */
 class HttpForbidden extends HttpError
 {
-    protected const int code = 403;
-    protected const string message = 'Forbidden';
+	protected const int code = 403;
+	protected const string message = 'Forbidden';
 }

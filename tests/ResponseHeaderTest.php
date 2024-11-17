@@ -2,58 +2,58 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core\Tests;
+namespace FiveOrbs\Core\Tests;
 
-use Conia\Core\Response;
+use FiveOrbs\Core\Response;
 
 final class ResponseHeaderTest extends TestCase
 {
-    public function testInitWithHeader(): void
-    {
-        $response = new Response($this->response());
-        $response->header('header-value', 'value');
+	public function testInitWithHeader(): void
+	{
+		$response = new Response($this->response());
+		$response->header('header-value', 'value');
 
-        $this->assertSame(true, $response->hasHeader('Header-Value'));
+		$this->assertSame(true, $response->hasHeader('Header-Value'));
 
-        $headers = $response->headers();
-        $this->assertSame('value', $headers['header-value'][0]);
-    }
+		$headers = $response->headers();
+		$this->assertSame('value', $headers['header-value'][0]);
+	}
 
-    public function testGetHeader(): void
-    {
-        $response = new Response($this->response(), $this->factory()->streamFactory());
-        $response = $response->header('header-value', 'value');
+	public function testGetHeader(): void
+	{
+		$response = new Response($this->response(), $this->factory()->streamFactory());
+		$response = $response->header('header-value', 'value');
 
-        $this->assertSame('value', $response->getHeader('Header-Value')[0]);
-    }
+		$this->assertSame('value', $response->getHeader('Header-Value')[0]);
+	}
 
-    public function testRemoveHeader(): void
-    {
-        $response = new Response($this->response(), $this->factory()->streamFactory());
-        $response->header('header-value', 'value');
+	public function testRemoveHeader(): void
+	{
+		$response = new Response($this->response(), $this->factory()->streamFactory());
+		$response->header('header-value', 'value');
 
-        $this->assertSame(true, $response->hasHeader('Header-Value'));
+		$this->assertSame(true, $response->hasHeader('Header-Value'));
 
-        $response = $response->removeHeader('header-value');
+		$response = $response->removeHeader('header-value');
 
-        $this->assertSame(false, $response->hasHeader('Header-Value'));
-    }
+		$this->assertSame(false, $response->hasHeader('Header-Value'));
+	}
 
-    public function testRedirectTemporary(): void
-    {
-        $response = new Response($this->response(), $this->factory()->streamFactory());
-        $response->redirect('/chuck');
+	public function testRedirectTemporary(): void
+	{
+		$response = new Response($this->response(), $this->factory()->streamFactory());
+		$response->redirect('/chuck');
 
-        $this->assertSame(302, $response->getStatusCode());
-        $this->assertSame('/chuck', $response->getHeader('Location')[0]);
-    }
+		$this->assertSame(302, $response->getStatusCode());
+		$this->assertSame('/chuck', $response->getHeader('Location')[0]);
+	}
 
-    public function testRedirectPermanent(): void
-    {
-        $response = new Response($this->response(), $this->factory()->streamFactory());
-        $response->redirect('/chuck', 301);
+	public function testRedirectPermanent(): void
+	{
+		$response = new Response($this->response(), $this->factory()->streamFactory());
+		$response->redirect('/chuck', 301);
 
-        $this->assertSame(301, $response->getStatusCode());
-        $this->assertSame('/chuck', $response->getHeader('Location')[0]);
-    }
+		$this->assertSame(301, $response->getStatusCode());
+		$this->assertSame('/chuck', $response->getHeader('Location')[0]);
+	}
 }

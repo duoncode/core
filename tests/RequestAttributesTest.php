@@ -2,36 +2,36 @@
 
 declare(strict_types=1);
 
-namespace Conia\Core\Tests;
+namespace FiveOrbs\Core\Tests;
 
-use Conia\Core\Exception\OutOfBoundsException;
-use Conia\Core\Request;
+use FiveOrbs\Core\Exception\OutOfBoundsException;
+use FiveOrbs\Core\Request;
 
 final class RequestAttributesTest extends TestCase
 {
-    public function testGetDefault(): void
-    {
-        $request = new Request($this->request());
+	public function testGetDefault(): void
+	{
+		$request = new Request($this->request());
 
-        $this->assertSame('the default', $request->get('doesnotexist', 'the default'));
-    }
+		$this->assertSame('the default', $request->get('doesnotexist', 'the default'));
+	}
 
-    public function testGetFailing(): void
-    {
-        $this->throws(OutOfBoundsException::class, 'Request attribute');
+	public function testGetFailing(): void
+	{
+		$this->throws(OutOfBoundsException::class, 'Request attribute');
 
-        $request = new Request($this->request());
+		$request = new Request($this->request());
 
-        $this->assertSame(null, $request->get('doesnotexist'));
-    }
+		$this->assertSame(null, $request->get('doesnotexist'));
+	}
 
-    public function testAttributes(): void
-    {
-        $request = new Request($this->request()->withAttribute('one', 1));
-        $request->set('two', '2');
+	public function testAttributes(): void
+	{
+		$request = new Request($this->request()->withAttribute('one', 1));
+		$request->set('two', '2');
 
-        $this->assertSame(2, count($request->attributes()));
-        $this->assertSame(1, $request->get('one'));
-        $this->assertSame('2', $request->get('two'));
-    }
+		$this->assertSame(2, count($request->attributes()));
+		$this->assertSame(1, $request->get('one'));
+		$this->assertSame('2', $request->get('two'));
+	}
 }
