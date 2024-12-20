@@ -29,7 +29,7 @@
 		"nyholm/psr7": "^1.5",
 		"nyholm/psr7-server": "^1",
 		"phpunit/phpunit": "^10",
-		"vimeo/psalm": "^5.20.0"
+		"vimeo/psalm": "^6"
 	},
 	"autoload": {
 		"psr-4": {
