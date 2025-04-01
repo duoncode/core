@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests\Fixtures;
+namespace Duon\Core\Tests\Fixtures;
 
-use FiveOrbs\Core\AddsConfigInterface;
-use FiveOrbs\Core\ConfigInterface;
+use Duon\Core\AddsConfigInterface;
+use Duon\Core\ConfigInterface;
 
 class TestConfig implements ConfigInterface
 {

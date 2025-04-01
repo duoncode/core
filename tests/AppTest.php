@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\App;
-use FiveOrbs\Core\Factory;
-use FiveOrbs\Core\Factory\Nyholm;
-use FiveOrbs\Core\Plugin;
-use FiveOrbs\Core\Tests\Fixtures\TestConfig;
-use FiveOrbs\Core\Tests\Fixtures\TestContainer;
-use FiveOrbs\Core\Tests\Fixtures\TestLogger;
-use FiveOrbs\Registry\Registry;
-use FiveOrbs\Router\Router;
+use Duon\Core\App;
+use Duon\Core\Factory;
+use Duon\Core\Factory\Nyholm;
+use Duon\Core\Plugin;
+use Duon\Core\Tests\Fixtures\TestConfig;
+use Duon\Core\Tests\Fixtures\TestContainer;
+use Duon\Core\Tests\Fixtures\TestLogger;
+use Duon\Registry\Registry;
+use Duon\Router\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -67,7 +67,7 @@ final class AppTest extends TestCase
 	public function testAppRun(): void
 	{
 		$app = $this->app();
-		$app->route('/', 'FiveOrbs\Core\Tests\Fixtures\TestController::textView');
+		$app->route('/', 'Duon\Core\Tests\Fixtures\TestController::textView');
 		ob_start();
 		$app->run($this->request());
 		$output = ob_get_contents();

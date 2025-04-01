@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core;
+namespace Duon\Core;
 
-use FiveOrbs\Core\Exception\OutOfBoundsException;
-use FiveOrbs\Core\Exception\RuntimeException;
-use FiveOrbs\Router\RequestWrapper;
+use Duon\Core\Exception\OutOfBoundsException;
+use Duon\Core\Exception\RuntimeException;
+use Duon\Router\RequestWrapper;
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 use Psr\Http\Message\StreamInterface as PsrStream;
 use Psr\Http\Message\UploadedFileInterface as PsrUploadedFile;

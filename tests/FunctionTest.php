@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use function FiveOrbs\Core\env;
+use function Duon\Core\env;
 
 final class FunctionTest extends TestCase
 {

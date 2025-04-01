@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\Exception\OutOfBoundsException;
-use FiveOrbs\Core\Request;
+use Duon\Core\Exception\OutOfBoundsException;
+use Duon\Core\Request;
 
 final class RequestFormPostGetTest extends TestCase
 {

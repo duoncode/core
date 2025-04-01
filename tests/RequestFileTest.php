@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\Exception\OutOfBoundsException;
-use FiveOrbs\Core\Exception\RuntimeException;
-use FiveOrbs\Core\Request;
+use Duon\Core\Exception\OutOfBoundsException;
+use Duon\Core\Exception\RuntimeException;
+use Duon\Core\Request;
 use Psr\Http\Message\UploadedFileInterface as PsrUploadedFile;
 
 final class RequestFileTest extends TestCase

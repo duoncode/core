@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core;
+namespace Duon\Core;
 
 /** @param non-empty-string $key */
 function env(string $key, bool|string|null $default = null): mixed

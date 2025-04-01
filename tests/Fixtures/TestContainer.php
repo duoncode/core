@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests\Fixtures;
+namespace Duon\Core\Tests\Fixtures;
 
 use Exception;
 use Psr\Container\ContainerInterface;

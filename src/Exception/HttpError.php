@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Exception;
+namespace Duon\Core\Exception;
 
 use Exception;
-use FiveOrbs\Core\Request;
+use Duon\Core\Request;
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 use Throwable;
 

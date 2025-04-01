@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests\Fixtures;
+namespace Duon\Core\Tests\Fixtures;
 
-use FiveOrbs\Core\Factory\Nyholm;
-use FiveOrbs\Core\Response;
+use Duon\Core\Factory\Nyholm;
+use Duon\Core\Response;
 
 class TestController
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Factory;
+namespace Duon\Core\Factory;
 
-use FiveOrbs\Core\Exception\RuntimeException;
+use Duon\Core\Exception\RuntimeException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use Psr\Http\Message\ServerRequestInterface;

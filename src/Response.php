@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core;
+namespace Duon\Core;
 
 use finfo;
-use FiveOrbs\Core\Exception\FileNotFoundException;
-use FiveOrbs\Core\Exception\RuntimeException;
-use FiveOrbs\Router\ResponseWrapper;
+use Duon\Core\Exception\FileNotFoundException;
+use Duon\Core\Exception\RuntimeException;
+use Duon\Router\ResponseWrapper;
 use Psr\Http\Message\ResponseInterface as PsrResponse;
 use Psr\Http\Message\StreamFactoryInterface as PsrStreamFactory;
 use Psr\Http\Message\StreamInterface as PsrStream;

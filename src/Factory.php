@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core;
+namespace Duon\Core;
 
 use Psr\Http\Message\RequestFactoryInterface as RequestFactory;
 use Psr\Http\Message\RequestInterface as Request;

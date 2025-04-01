@@ -1,7 +1,7 @@
 ---
 title: Introduction
 ---
-FiveOrbs Core
+Duon Core
 ==========
 
 !!! warn "Note"

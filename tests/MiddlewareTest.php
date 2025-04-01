@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\Middleware;
-use FiveOrbs\Core\Request;
-use FiveOrbs\Core\Response;
+use Duon\Core\Middleware;
+use Duon\Core\Request;
+use Duon\Core\Response;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use Psr\Http\Message\ResponseInterface;

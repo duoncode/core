@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Exception;
+namespace Duon\Core\Exception;
 
 class OutOfBoundsException extends RuntimeException implements CoreException {}

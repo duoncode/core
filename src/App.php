@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core;
+namespace Duon\Core;
 
 use Closure;
-use FiveOrbs\Core\ConfigInterface as Config;
-use FiveOrbs\Core\Factory;
-use FiveOrbs\Registry\Entry;
-use FiveOrbs\Registry\Registry;
-use FiveOrbs\Router\AddsBeforeAfter;
-use FiveOrbs\Router\AddsRoutes;
-use FiveOrbs\Router\Dispatcher;
-use FiveOrbs\Router\Group;
-use FiveOrbs\Router\Route;
-use FiveOrbs\Router\RouteAdder;
-use FiveOrbs\Router\Router;
+use Duon\Core\ConfigInterface as Config;
+use Duon\Core\Factory;
+use Duon\Registry\Entry;
+use Duon\Registry\Registry;
+use Duon\Router\AddsBeforeAfter;
+use Duon\Router\AddsRoutes;
+use Duon\Router\Dispatcher;
+use Duon\Router\Group;
+use Duon\Router\Route;
+use Duon\Router\RouteAdder;
+use Duon\Router\Router;
 use Psr\Container\ContainerInterface as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;

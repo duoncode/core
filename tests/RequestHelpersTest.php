@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\Request;
+use Duon\Core\Request;
 use Nyholm\Psr7\Stream;
 
 final class RequestHelpersTest extends TestCase

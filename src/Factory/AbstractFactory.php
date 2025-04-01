@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Factory;
+namespace Duon\Core\Factory;
 
-use FiveOrbs\Core\Exception\ValueError;
-use FiveOrbs\Core\Factory;
+use Duon\Core\Exception\ValueError;
+use Duon\Core\Factory;
 use Psr\Http\Message\RequestFactoryInterface as Requestfactory;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseFactoryInterface as ResponseFactory;

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\Exception\HttpBadRequest;
-use FiveOrbs\Core\Exception\HttpConflict;
-use FiveOrbs\Core\Exception\HttpForbidden;
-use FiveOrbs\Core\Exception\HttpGone;
-use FiveOrbs\Core\Exception\HttpMethodNotAllowed;
-use FiveOrbs\Core\Exception\HttpNotFound;
-use FiveOrbs\Core\Exception\HttpUnauthorized;
+use Duon\Core\Exception\HttpBadRequest;
+use Duon\Core\Exception\HttpConflict;
+use Duon\Core\Exception\HttpForbidden;
+use Duon\Core\Exception\HttpGone;
+use Duon\Core\Exception\HttpMethodNotAllowed;
+use Duon\Core\Exception\HttpNotFound;
+use Duon\Core\Exception\HttpUnauthorized;
 
 final class ExceptionTest extends TestCase
 {

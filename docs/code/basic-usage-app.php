@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use FiveOrbs\Core\App;
-use FiveOrbs\Core\Factory;
-use FiveOrbs\Core\Factory\Guzzle;
-use FiveOrbs\Core\Request;
-use FiveOrbs\Core\Response;
-use FiveOrbs\Router\After;
+use Duon\Core\App;
+use Duon\Core\Factory;
+use Duon\Core\Factory\Guzzle;
+use Duon\Core\Request;
+use Duon\Core\Response;
+use Duon\Router\After;
 
 $factory = new Guzzle();
 $afterHandler = new class ($factory) implements After {

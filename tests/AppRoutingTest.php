@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\App;
-use FiveOrbs\Core\Factory\Nyholm;
-use FiveOrbs\Core\Tests\Fixtures\TestConfig;
-use FiveOrbs\Router\Group;
-use FiveOrbs\Router\Route;
-use FiveOrbs\Router\Router;
+use Duon\Core\App;
+use Duon\Core\Factory\Nyholm;
+use Duon\Core\Tests\Fixtures\TestConfig;
+use Duon\Router\Group;
+use Duon\Router\Route;
+use Duon\Router\Router;
 
 final class AppRoutingTest extends TestCase
 {

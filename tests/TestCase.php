@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\App;
-use FiveOrbs\Core\Factory;
-use FiveOrbs\Core\Factory\Nyholm;
-use FiveOrbs\Core\Tests\Fixtures\TestConfig;
-use FiveOrbs\Registry\Registry;
+use Duon\Core\App;
+use Duon\Core\Factory;
+use Duon\Core\Factory\Nyholm;
+use Duon\Core\Tests\Fixtures\TestConfig;
+use Duon\Registry\Registry;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Psr\Http\Message\ResponseInterface as PsrResponse;

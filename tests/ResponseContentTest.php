@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\Exception\RuntimeException;
-use FiveOrbs\Core\Response;
+use Duon\Core\Exception\RuntimeException;
+use Duon\Core\Response;
 use stdClass;
 
 final class ResponseContentTest extends TestCase

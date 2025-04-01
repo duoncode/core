@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Exception;
+namespace Duon\Core\Exception;
 
 /** @psalm-api */
 class HttpForbidden extends HttpError

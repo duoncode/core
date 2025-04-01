@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Factory;
+namespace Duon\Core\Factory;
 
-use FiveOrbs\Core\Exception\RuntimeException;
+use Duon\Core\Exception\RuntimeException;
 use Laminas\Diactoros\RequestFactory;
 use Laminas\Diactoros\ResponseFactory;
 use Laminas\Diactoros\ServerRequestFactory;

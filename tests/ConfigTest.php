@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core\Tests;
+namespace Duon\Core\Tests;
 
-use FiveOrbs\Core\Exception\OutOfBoundsException;
-use FiveOrbs\Core\Tests\Fixtures\TestConfig;
+use Duon\Core\Exception\OutOfBoundsException;
+use Duon\Core\Tests\Fixtures\TestConfig;
 
 final class ConfigTest extends TestCase
 {

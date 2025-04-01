@@ -1,14 +1,14 @@
-FiveOrbs Core
+Duon Core
 ==========
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/062d5c9d41454d08b240b63bcf35bfc1)](https://app.codacy.com/gh/fiveorbs/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/062d5c9d41454d08b240b63bcf35bfc1)](https://app.codacy.com/gh/fiveorbs/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
-[![Psalm level](https://shepherd.dev/github/fiveorbs/core/level.svg?)](https://fiveorbs.dev/core)
-[![Psalm coverage](https://shepherd.dev/github/fiveorbs/core/coverage.svg?)](https://shepherd.dev/github/fiveorbs/core)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/062d5c9d41454d08b240b63bcf35bfc1)](https://app.codacy.com/gh/duon/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/062d5c9d41454d08b240b63bcf35bfc1)](https://app.codacy.com/gh/duon/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+[![Psalm level](https://shepherd.dev/github/duon/core/level.svg?)](https://duon.dev/core)
+[![Psalm coverage](https://shepherd.dev/github/duon/core/coverage.svg?)](https://shepherd.dev/github/duon/core)
 
 
-FiveOrbs Core is a lightweight and easily extendable >=PHP 8.3 web framework.
+Duon Core is a lightweight and easily extendable >=PHP 8.3 web framework.
 
 > [!WARNING]
 > This library is under active development, some of its features are still
@@ -33,11 +33,11 @@ Supported PSRs:
 * PSR-15 Http Middleware
 * PSR-17 Http Factories
 
-Incomplete documentation can be found on the website: [fiveorbs.dev/core](https://fiveorbs.dev/core/)
+Incomplete documentation can be found on the website: [duon.dev/core](https://duon.dev/core/)
 
 License
 -------
 
-FiveOrbs Core is released under the MIT [license](LICENSE.md).
+Duon Core is released under the MIT [license](LICENSE.md).
 
 Copyright © 2024 ebene fünf GmbH. All rights reserved.

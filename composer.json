@@ -1,6 +1,6 @@
 {
-	"name": "fiveorbs/core",
-	"description": "FiveOrbs Core Web Framework",
+	"name": "duon/core",
+	"description": "Duon core web framework",
 	"type": "library",
 	"license": "MIT",
 	"authors": [
@@ -13,27 +13,27 @@
 	"prefer-stable": true,
 	"require": {
 		"php": ">=8.3",
-		"fiveorbs/cli": "dev-main",
-		"fiveorbs/registry": "dev-main",
-		"fiveorbs/router": "dev-main",
+		"duon/cli": "dev-main",
+		"duon/registry": "dev-main",
+		"duon/router": "dev-main",
 		"laminas/laminas-httphandlerrunner": "^2.4",
 		"psr/http-factory": "^1.0",
 		"psr/http-message-implementation": "^1.0"
 	},
 	"require-dev": {
-		"fiveorbs/dev": "^1.1",
+		"duon/dev": "^1.1",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-		"ernst/coverlyzer": "^0.1.1",
+		"ernst/coverlyzer": "^0.2",
 		"guzzlehttp/psr7": "^2",
 		"laminas/laminas-diactoros": "^2 || ^3",
 		"nyholm/psr7": "^1.5",
 		"nyholm/psr7-server": "^1",
-		"phpunit/phpunit": "^10",
-		"vimeo/psalm": "^6"
+		"phpunit/phpunit": "^12.0",
+		"vimeo/psalm": "^6.10"
 	},
 	"autoload": {
 		"psr-4": {
-			"FiveOrbs\\Core\\": "src"
+			"Duon\\Core\\": "src"
 		},
 		"files": [
 			"src/functions.php"
@@ -41,7 +41,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"FiveOrbs\\Core\\Tests\\": "tests"
+			"Duon\\Core\\Tests\\": "tests"
 		}
 	},
 	"scripts": {

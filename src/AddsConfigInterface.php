@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Core;
+namespace Duon\Core;
 
-use FiveOrbs\Core\Exception\OutOfBoundsException;
+use Duon\Core\Exception\OutOfBoundsException;
 
 /** @psalm-api */
 trait AddsConfigInterface
