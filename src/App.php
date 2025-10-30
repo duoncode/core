@@ -160,3 +160,4 @@ class App implements RouteAdder
 		return (new Emitter())->emit($response) ? $response : false;
 	}
 }
+
