@@ -18,7 +18,7 @@ class TestCase extends BaseTestCase
 {
 	public string $root = __DIR__ . '/Fixtures';
 
-	public function throws(string $exception, string $message = null): void
+	public function throws(string $exception, ?string $message = null): void
 	{
 		$this->expectException($exception);
 
@@ -53,7 +53,7 @@ class TestCase extends BaseTestCase
 		array $cookie = [],
 		array $post = [],
 		array $get = [],
-		array $files = null,
+		?array $files = null,
 		mixed $body = null,
 	): PsrServerRequest {
 		$headers = array_merge([

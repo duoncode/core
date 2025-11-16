@@ -34,10 +34,10 @@ interface Factory
 
 	public function uploadedFile(
 		Stream $stream,
-		int $size = null,
+		?int $size = null,
 		int $error = \UPLOAD_ERR_OK,
-		string $clientFilename = null,
-		string $clientMediaType = null,
+		?string $clientFilename = null,
+		?string $clientMediaType = null,
 	): UploadedFile;
 
 	public function uri(string $uri = ''): Uri;
