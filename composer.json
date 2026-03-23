@@ -20,7 +20,7 @@
 		"psr/http-message-implementation": "^1.0"
 	},
 	"require-dev": {
-		"duon/dev": "^2.5",
+		"duon/dev": "^2.5 || ^3.0",
 		"guzzlehttp/psr7": "^2",
 		"laminas/laminas-diactoros": "^2 || ^3",
 		"nyholm/psr7": "^1.5",
