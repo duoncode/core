@@ -6,21 +6,29 @@
 	"authors": [
 		{
 			"name": "Ernst",
-			"email": "ernst@duon.run"
+			"email": "ernst@duon.sh"
 		}
 	],
-	"homepage": "https://duon.run/core",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"authors": [
+		{
+			"name": "Ernst",
+			"email": "ernst@duon.sh"
+		}
+	],
+	"homepage": "https://duon.sh/core",
 	"require": {
 		"php": "^8.5",
 		"duon/cli": "^0.1",
-		"duon/container": "^0.2",
-		"duon/router": "^0.1",
+		"duon/container": "dev-main",
+		"duon/router": "dev-main",
 		"laminas/laminas-httphandlerrunner": "^2.4",
 		"psr/http-factory": "^1.0",
 		"psr/http-message-implementation": "^1.0"
 	},
 	"require-dev": {
-		"duon/dev": "^2.5",
+		"duon/dev": "^3.0",
 		"guzzlehttp/psr7": "^2",
 		"laminas/laminas-diactoros": "^2 || ^3",
 		"nyholm/psr7": "^1.5",
@@ -43,11 +51,16 @@
 		"test": "./vendor/bin/phpunit --testdox --no-coverage --colors=always",
 		"types": "./vendor/bin/psalm --no-cache",
 		"mdlint": "markdownlint-cli2 README.md CHANGELOG.md LICENSE.md docs/",
+		"lint": [
+			"./vendor/bin/mago fmt --check",
+			"./vendor/bin/mago lint"
+		],
 		"coverage": [
-			"./vendor/bin/phpunit --testdox --path-coverage --coverage-text --coverage-php=coverage/cover.php --colors=always",
-			"./vendor/bin/coverlyzer coverage/cover.php"
+			"./vendor/bin/phpunit --testdox --path-coverage --coverage-text --coverage-php=.coverage/cover.php --colors=always",
+			"./vendor/bin/coverlyzer .coverage/cover.php"
 		],
 		"ci": [
+			"composer lint",
 			"composer coverage",
 			"composer types",
 			"composer mdlint"
