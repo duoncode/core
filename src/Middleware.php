@@ -20,9 +20,7 @@ abstract class Middleware implements MiddlewareInterface
 	): ResponseInterface {
 		return $this->handle(
 			new Request($request),
-			static function (Request $request) use ($handler): Response {
-				return new Response($handler->handle($request->unwrap()));
-			},
+			static fn(Request $request): Response => new Response($handler->handle($request->unwrap())),
 		)->unwrap();
 	}
 

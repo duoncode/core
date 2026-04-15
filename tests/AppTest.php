@@ -98,9 +98,7 @@ final class AppTest extends TestCase
 	public function testAddLoggerCallable(): void
 	{
 		$app = $this->app();
-		$app->logger(static function (): PsrLogger {
-			return new TestLogger();
-		});
+		$app->logger(static fn(): PsrLogger => new TestLogger());
 		$container = $app->container();
 		$logger = $container->get(PsrLogger::class);
 
