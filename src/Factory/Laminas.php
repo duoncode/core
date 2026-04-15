@@ -27,9 +27,11 @@ class Laminas extends AbstractFactory
 			$this->streamFactory = new StreamFactory();
 			$this->uploadedFileFactory = new UploadedFileFactory();
 			$this->uriFactory = new UriFactory();
+
 			// @codeCoverageIgnoreStart
 		} catch (Throwable) {
 			throw new RuntimeException('Install nyholm/psr7-server');
+
 			// @codeCoverageIgnoreEnd
 		}
 	}

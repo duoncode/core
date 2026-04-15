@@ -107,6 +107,6 @@ final class RequestFormPostGetTest extends TestCase
 			],
 		));
 
-		$this->assertSame([ 'first_band' => 'Mantas', 'chuck' => 'schuldiner', ], $request->form());
+		$this->assertSame(['first_band' => 'Mantas', 'chuck' => 'schuldiner'], $request->form());
 	}
 }

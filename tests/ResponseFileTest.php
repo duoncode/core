@@ -27,7 +27,10 @@ final class ResponseFileTest extends TestCase
 
 		$this->assertSame('image/webp', $response->getHeader('Content-Type')[0]);
 		$this->assertSame((string) filesize($file), $response->getHeader('Content-Length')[0]);
-		$this->assertSame('attachment; filename="image.webp"', $response->getHeader('Content-Disposition')[0]);
+		$this->assertSame(
+			'attachment; filename="image.webp"',
+			$response->getHeader('Content-Disposition')[0],
+		);
 	}
 
 	public function testFileDownloadResponseWithChangedName(): void
@@ -37,7 +40,10 @@ final class ResponseFileTest extends TestCase
 
 		$this->assertSame('image/webp', $response->getHeader('Content-Type')[0]);
 		$this->assertSame((string) filesize($file), $response->getHeader('Content-Length')[0]);
-		$this->assertSame('attachment; filename="newname.jpg"', $response->getHeader('Content-Disposition')[0]);
+		$this->assertSame(
+			'attachment; filename="newname.jpg"',
+			$response->getHeader('Content-Disposition')[0],
+		);
 	}
 
 	public function testSendfileResponse(): void

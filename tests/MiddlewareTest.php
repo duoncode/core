@@ -22,7 +22,7 @@ final class MiddlewareTest extends TestCase
 			$factory, // ServerRequestFactory
 			$factory, // UriFactory
 			$factory, // UploadedFileFactory
-			$factory,  // StreamFactory
+			$factory, // StreamFactory
 		);
 		$request = $creator->fromGlobals();
 		$handler = new class implements RequestHandlerInterface {
@@ -30,9 +30,11 @@ final class MiddlewareTest extends TestCase
 			{
 				$factory = new Psr17Factory();
 
-				return $factory->createResponse()->withBody(
-					$factory->createStream('test:' . $request->getAttribute('test')),
-				);
+				return $factory
+					->createResponse()
+					->withBody(
+						$factory->createStream('test:' . $request->getAttribute('test')),
+					);
 			}
 		};
 		$middleware = new class extends Middleware {

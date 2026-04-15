@@ -16,7 +16,9 @@ use Psr\Http\Message\UriInterface as PsrUri;
 /** @psalm-api */
 class Request implements RequestWrapper
 {
-	public function __construct(protected PsrServerRequest $psrRequest) {}
+	public function __construct(
+		protected PsrServerRequest $psrRequest,
+	) {}
 
 	#[Override]
 	public function unwrap(): PsrServerRequest
@@ -232,11 +234,11 @@ class Request implements RequestWrapper
 		foreach ($keys as $key) {
 			if (is_array($files) && array_key_exists($key, $files)) {
 				/**
-				* @psalm-suppress MixedAssignment
-				*
-				* Psalm does not support recursive types like:
-				*     T = array<string, string|T>
-				*/
+				 * @psalm-suppress MixedAssignment
+				 *
+				 * Psalm does not support recursive types like:
+				 *     T = array<string, string|T>
+				 */
 				$files = $files[$key];
 			} else {
 				throw new OutOfBoundsException('Invalid files key ' . $this->formatKeys($keys));

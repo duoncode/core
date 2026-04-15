@@ -38,16 +38,20 @@ final class RequestHelpersTest extends TestCase
 
 	public function testBody(): void
 	{
-		$this->assertSame('', (string) (new Request($this->request()))->body());
+		$this->assertSame('', (string) new Request($this->request())->body());
 	}
 
 	public function testJson(): void
 	{
-		$stream = Stream::create('[{"title": "Leprosy", "released": 1988}, {"title": "Human", "released": 1991}]');
+		$stream = Stream::create(
+			'[{"title": "Leprosy", "released": 1988}, {"title": "Human", "released": 1991}]',
+		);
 		$request = new Request($this->request()->withBody($stream));
 
-		$this->assertSame([ ['title' => 'Leprosy', 'released' => 1988],
-			['title' => 'Human', 'released' => 1991], ], $request->json());
+		$this->assertSame(
+			[['title' => 'Leprosy', 'released' => 1988], ['title' => 'Human', 'released' => 1991]],
+			$request->json(),
+		);
 	}
 
 	public function testJsonEmpty(): void

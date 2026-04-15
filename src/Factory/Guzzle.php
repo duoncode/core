@@ -24,9 +24,11 @@ class Guzzle extends AbstractFactory
 			$this->serverRequestFactory = $factory;
 			$this->uploadedFileFactory = $factory;
 			$this->uriFactory = $factory;
+
 			// @codeCoverageIgnoreStart
 		} catch (Throwable) {
 			throw new RuntimeException('Install guzzlehttp/psr7');
+
 			// @codeCoverageIgnoreEnd
 		}
 	}

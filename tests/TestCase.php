@@ -63,8 +63,9 @@ class TestCase extends BaseTestCase
 			'Connection' => 'keep-alive',
 			'Host' => 'www.example.com',
 			'Referer' => 'https://previous.example.com',
-			'User-Agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.6) '
-				. 'Gecko/20100625 Firefox/3.6.6 ( .NET CLR 3.5.30729)',
+			'User-Agent' =>
+				'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.6) '
+					. 'Gecko/20100625 Firefox/3.6.6 ( .NET CLR 3.5.30729)',
 		], $headers);
 
 		$server = array_merge([
@@ -103,7 +104,7 @@ class TestCase extends BaseTestCase
 			$factory, // ServerRequestFactory
 			$factory, // UriFactory
 			$factory, // UploadedFileFactory
-			$factory,  // StreamFactory
+			$factory, // StreamFactory
 		);
 
 		$request = $creator->fromArrays($server, $headers, $cookie, $get, $post, $files, $body);

@@ -20,22 +20,31 @@ final class AppRoutingTest extends TestCase
 		$app->staticRoute('/unnamedstatic', "{$this->root}/public/static");
 
 		$this->assertSame('/static/test.json', $app->router()->staticUrl('static', 'test.json'));
-		$this->assertSame('/unnamedstatic/test.json', $app->router()->staticUrl('/unnamedstatic', 'test.json'));
+		$this->assertSame('/unnamedstatic/test.json', $app->router()->staticUrl(
+			'/unnamedstatic',
+			'test.json',
+		));
 	}
 
 	public function testAppAddRouteAddGroupHelper(): void
 	{
 		$app = $this->app();
 		$route = new Route('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
-		$group = new Group('/albums', function (Group $group) {
-			$ctrl = TestController::class;
-			$group->addRoute(Route::get('/{name}', "{$ctrl}::albumName", 'name'));
-		}, 'albums:');
+		$group = new Group(
+			'/albums',
+			function (Group $group) {
+				$ctrl = TestController::class;
+				$group->addRoute(Route::get('/{name}', "{$ctrl}::albumName", 'name'));
+			},
+			'albums:',
+		);
 		$app->addRoute($route);
 		$app->addGroup($group);
 
 		$this->assertSame('/albums', $app->router()->routeUrl('albums'));
-		$this->assertSame('/albums/symbolic', $app->router()->routeUrl('albums:name', ['name' => 'symbolic']));
+		$this->assertSame('/albums/symbolic', $app->router()->routeUrl('albums:name', [
+			'name' => 'symbolic',
+		]));
 	}
 
 	public function testAppRouteHelper(): void
@@ -115,11 +124,17 @@ final class AppRoutingTest extends TestCase
 	public function testAppGroupHelper(): void
 	{
 		$app = $this->app();
-		$app->group('/albums', function (Group $group) {
-			$ctrl = TestController::class;
-			$group->addRoute(Route::get('/{name}', "{$ctrl}::albumName", 'name'));
-		}, 'albums:');
+		$app->group(
+			'/albums',
+			function (Group $group) {
+				$ctrl = TestController::class;
+				$group->addRoute(Route::get('/{name}', "{$ctrl}::albumName", 'name'));
+			},
+			'albums:',
+		);
 
-		$this->assertSame('/albums/symbolic', $app->router()->routeUrl('albums:name', ['name' => 'symbolic']));
+		$this->assertSame('/albums/symbolic', $app->router()->routeUrl('albums:name', [
+			'name' => 'symbolic',
+		]));
 	}
 }

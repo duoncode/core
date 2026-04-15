@@ -23,7 +23,7 @@ final class ResponseContentTest extends TestCase
 
 	public function testWithContentTypeFromString(): void
 	{
-		$response = (new Response($this->response()))->withContentType(
+		$response = new Response($this->response())->withContentType(
 			'text/html',
 			'<h1>Chuck String</h1>',
 			404,
@@ -37,7 +37,12 @@ final class ResponseContentTest extends TestCase
 	public function testWithContentTypeFromStream(): void
 	{
 		$stream = $this->factory()->stream('<h1>Chuck Stream</h1>');
-		$response = (new Response($this->response()))->withContentType('text/html', $stream, 404, 'The Phrase');
+		$response = new Response($this->response())->withContentType(
+			'text/html',
+			$stream,
+			404,
+			'The Phrase',
+		);
 
 		$this->assertSame('<h1>Chuck Stream</h1>', (string) $response->getBody());
 		$this->assertSame('text/html', $response->getHeader('Content-Type')[0]);
@@ -66,7 +71,7 @@ final class ResponseContentTest extends TestCase
 		$this->throws(RuntimeException::class, 'No factory available');
 
 		$resource = fopen('php://temp', 'r+');
-		(new Response($this->response()))->withContentType('text/html', $resource, 404, 'The Phrase');
+		new Response($this->response())->withContentType('text/html', $resource, 404, 'The Phrase');
 	}
 
 	public function testWithContentTypeInvalidData(): void

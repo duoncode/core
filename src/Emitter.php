@@ -18,7 +18,7 @@ final class Emitter implements EmitterInterface
 	public function __construct(int $maxBufferLength = 8192)
 	{
 		$sapiStreamEmitter = new SapiStreamEmitter($maxBufferLength);
-		$conditionalEmitter = new class ($sapiStreamEmitter) implements EmitterInterface {
+		$conditionalEmitter = new class($sapiStreamEmitter) implements EmitterInterface {
 			private $emitter;
 
 			public function __construct(EmitterInterface $emitter)
@@ -29,10 +29,7 @@ final class Emitter implements EmitterInterface
 			#[Override]
 			public function emit(ResponseInterface $response): bool
 			{
-				if (
-					!$response->hasHeader('Content-Disposition')
-					&& !$response->hasHeader('Content-Range')
-				) {
+				if (!$response->hasHeader('Content-Disposition') && !$response->hasHeader('Content-Range')) {
 					return false;
 				}
 

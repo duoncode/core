@@ -46,8 +46,11 @@ class App implements RouteAdder
 		$plugin->load($this);
 	}
 
-	public static function create(Factory $factory, ?Config $config = null, ?PsrContainer $container = null): self
-	{
+	public static function create(
+		Factory $factory,
+		?Config $config = null,
+		?PsrContainer $container = null,
+	): self {
 		$app = new self($factory, new Router(), new Container(container: $container), $config);
 
 		return $app;
@@ -160,6 +163,6 @@ class App implements RouteAdder
 		$this->dispatcher->setAfterHandlers($this->afterHandlers);
 		$response = $this->dispatcher->dispatch($request, $route, $this->container);
 
-		return (new Emitter())->emit($response) ? $response : false;
+		return new Emitter()->emit($response) ? $response : false;
 	}
 }

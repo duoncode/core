@@ -12,7 +12,7 @@ final class ResponseBodyTest extends TestCase
 	public function testCreateWithStringBody(): void
 	{
 		$text = 'text';
-		$response = (new Response($this->response(), $this->factory()->streamFactory()))->write($text);
+		$response = new Response($this->response(), $this->factory()->streamFactory())->write($text);
 		$this->assertSame($text, (string) $response->getBody());
 	}
 

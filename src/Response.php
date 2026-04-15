@@ -117,7 +117,9 @@ class Response implements ResponseWrapper
 			return $this->setResourceBody($body);
 		}
 
-		throw new RuntimeException('Only strings, Stringable or resources are allowed to create streams!');
+		throw new RuntimeException(
+			'Only strings, Stringable or resources are allowed to create streams!',
+		);
 	}
 
 	protected function setStringBody(string $body): static
@@ -153,7 +155,9 @@ class Response implements ResponseWrapper
 	protected function setResourceBody(mixed $body): static
 	{
 		if ($this->streamFactory) {
-			$this->psrResponse = $this->psrResponse->withBody($this->streamFactory->createStreamFromResource($body));
+			$this->psrResponse = $this->psrResponse->withBody($this->streamFactory->createStreamFromResource(
+				$body,
+			));
 
 			return $this;
 		}

@@ -44,10 +44,10 @@ abstract class AbstractFactory implements Factory
 	public function response(int $code = 200, string $reasonPhrase = ''): Response
 	{
 		if ($reasonPhrase === '') {
-			return  $this->responseFactory->createResponse($code);
+			return $this->responseFactory->createResponse($code);
 		}
 
-		return  $this->responseFactory->createResponse($code, $reasonPhrase);
+		return $this->responseFactory->createResponse($code, $reasonPhrase);
 	}
 
 	#[Override]

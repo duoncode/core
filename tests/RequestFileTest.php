@@ -102,7 +102,10 @@ final class RequestFileTest extends TestCase
 
 	public function testFileInstanceNotAvailableTooMuchKeys(): void
 	{
-		$this->throws(OutOfBoundsException::class, "Invalid file key (too deep) ['nested']['myfile']['toomuch']");
+		$this->throws(
+			OutOfBoundsException::class,
+			"Invalid file key (too deep) ['nested']['myfile']['toomuch']",
+		);
 
 		$request = new Request($this->request());
 		$request->file('nested', 'myfile', 'toomuch');

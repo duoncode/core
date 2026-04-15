@@ -45,7 +45,10 @@ final class RequestHeaderTest extends TestCase
 		$request = new Request($this->request());
 
 		$this->assertSame('www.example.com', $request->headers(firstOnly: true)['Host']);
-		$this->assertSame('deflate, gzip;q=1.0, *;q=0.5', $request->headers(firstOnly: true)['Accept-Encoding']);
+		$this->assertSame(
+			'deflate, gzip;q=1.0, *;q=0.5',
+			$request->headers(firstOnly: true)['Accept-Encoding'],
+		);
 	}
 
 	public function testWritingHeaders(): void
@@ -56,7 +59,10 @@ final class RequestHeaderTest extends TestCase
 		$request->addHeader('test-header', 'test-value-added');
 
 		$this->assertSame('test-value-replaced, test-value-added', $request->header('test-header'));
-		$this->assertSame(['test-value-replaced', 'test-value-added'], $request->headerArray('test-header'));
+		$this->assertSame(
+			['test-value-replaced', 'test-value-added'],
+			$request->headerArray('test-header'),
+		);
 
 		$request->removeHeader('test-header');
 

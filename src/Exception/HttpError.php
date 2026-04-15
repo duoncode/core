@@ -58,19 +58,19 @@ abstract class HttpError extends Exception implements CoreException
 
 	public function getPrettyTrace(): string
 	{
-		$result = "";
+		$result = '';
 		$traceNumber = 0;
 
 		foreach ($this->getTrace() as $frame) {
-			$args = "";
+			$args = '';
 
 			if (isset($frame['args'])) {
-				$args = implode(", ", array_map($this->formatTraceArg(...), $frame['args']));
+				$args = implode(', ', array_map($this->formatTraceArg(...), $frame['args']));
 			}
 
 			$result .= sprintf(
-				"<p class=\"trace\"><span class=\"trace-number\">#%s</span>"
-				. "<span class=\"trace-file\">%s <span class=\"trace-line-number\">(%s)</span></span>"
+				'<p class="trace"><span class="trace-number">#%s</span>'
+				. '<span class="trace-file">%s <span class="trace-line-number">(%s)</span></span>'
 				. "<code class=\"trace-code\">%s%s%s(%s)</code></p>\n",
 				$traceNumber,
 				$frame['file'] ?? '',
@@ -94,7 +94,7 @@ abstract class HttpError extends Exception implements CoreException
 		}
 
 		if (is_array($arg)) {
-			return "Array";
+			return 'Array';
 		}
 
 		if (is_null($arg)) {
@@ -102,7 +102,7 @@ abstract class HttpError extends Exception implements CoreException
 		}
 
 		if (is_bool($arg)) {
-			return $arg ? "true" : "false";
+			return $arg ? 'true' : 'false';
 		}
 
 		if (is_object($arg)) {

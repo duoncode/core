@@ -14,8 +14,10 @@ use Psr\Http\Server\RequestHandlerInterface;
 abstract class Middleware implements MiddlewareInterface
 {
 	#[Override]
-	public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-	{
+	public function process(
+		ServerRequestInterface $request,
+		RequestHandlerInterface $handler,
+	): ResponseInterface {
 		return $this->handle(
 			new Request($request),
 			function (Request $request) use ($handler): Response {
