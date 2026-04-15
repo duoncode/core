@@ -79,7 +79,7 @@ final class AppTest extends TestCase
 	public function testAppRegisterHelper(): void
 	{
 		$app = $this->app();
-		$app->register('Chuck', 'Schuldiner')->asIs();
+		$app->register('Chuck', 'Schuldiner')->value();
 		$container = $app->container();
 
 		$this->assertSame('Schuldiner', $container->get('Chuck'));
