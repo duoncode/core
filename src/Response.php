@@ -256,7 +256,7 @@ class Response implements ResponseWrapper
 
 		$finfo = new finfo(FILEINFO_MIME_ENCODING);
 		$encoding = $finfo->file($file);
-		assert(isset($this->streamFactory));
+		assert(isset($this->streamFactory), 'Stream factory must be set before creating a file stream');
 		$stream = $this->streamFactory->createStreamFromFile($file, 'rb');
 
 		$this->psrResponse = $this->psrResponse

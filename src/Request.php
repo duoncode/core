@@ -49,7 +49,7 @@ class Request implements RequestWrapper
 	public function form(): ?array
 	{
 		$body = $this->psrRequest->getParsedBody();
-		assert($body === null || is_array($body));
+		assert($body === null || is_array($body), 'Parsed form body must be null or an array');
 
 		return $body;
 	}
@@ -57,7 +57,7 @@ class Request implements RequestWrapper
 	public function field(string $key, mixed $default = null): mixed
 	{
 		$body = $this->psrRequest->getParsedBody();
-		assert($body === null || is_array($body));
+		assert($body === null || is_array($body), 'Parsed form body must be null or an array');
 		$error = 'Form field not found';
 
 		return $this->returnOrFail($body, $key, $default, $error, func_num_args());
@@ -251,7 +251,7 @@ class Request implements RequestWrapper
 			return [$files];
 		}
 
-		assert(is_array($files));
+		assert(is_array($files), 'Uploaded files selection must resolve to an array');
 
 		return $files;
 	}
@@ -311,7 +311,7 @@ class Request implements RequestWrapper
 			return $default;
 		}
 
-		assert(!($array === null));
+		assert($array !== null, 'Input array must not be null when no default value is provided');
 
 		if (array_key_exists($key, $array)) {
 			return $array[$key];
