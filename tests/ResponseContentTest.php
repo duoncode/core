@@ -110,7 +110,7 @@ final class ResponseContentTest extends TestCase
 	{
 		$response = Response::create($this->factory())
 			->json(
-				(function () {
+				(static function () {
 					$arr = [13, 31, 73];
 
 					foreach ($arr as $a) {

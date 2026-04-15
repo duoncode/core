@@ -107,9 +107,7 @@ class TestCase extends BaseTestCase
 			$factory, // StreamFactory
 		);
 
-		$request = $creator->fromArrays($server, $headers, $cookie, $get, $post, $files, $body);
-
-		return $request;
+		return $creator->fromArrays($server, $headers, $cookie, $get, $post, $files, $body);
 	}
 
 	public function getFile(): array

@@ -8,7 +8,6 @@ use Closure;
 use Duon\Container\Container;
 use Duon\Container\Entry;
 use Duon\Core\ConfigInterface as Config;
-use Duon\Core\Factory;
 use Duon\Router\AddsBeforeAfter;
 use Duon\Router\AddsRoutes;
 use Duon\Router\Dispatcher;
@@ -51,9 +50,7 @@ class App implements RouteAdder
 		?Config $config = null,
 		?PsrContainer $container = null,
 	): self {
-		$app = new self($factory, new Router(), new Container(container: $container), $config);
-
-		return $app;
+		return new self($factory, new Router(), new Container(container: $container), $config);
 	}
 
 	public function router(): Router
@@ -157,7 +154,7 @@ class App implements RouteAdder
 
 	public function run(?Request $request = null): Response|false
 	{
-		$request = $request ?? $this->factory->serverRequest();
+		$request ??= $this->factory->serverRequest();
 		$route = $this->router->match($request);
 		$this->dispatcher->setBeforeHandlers($this->beforeHandlers);
 		$this->dispatcher->setAfterHandlers($this->afterHandlers);

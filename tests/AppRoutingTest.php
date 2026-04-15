@@ -32,7 +32,7 @@ final class AppRoutingTest extends TestCase
 		$route = new Route('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
 		$group = new Group(
 			'/albums',
-			function (Group $group) {
+			static function (Group $group) {
 				$ctrl = TestController::class;
 				$group->addRoute(Route::get('/{name}', "{$ctrl}::albumName", 'name'));
 			},
@@ -58,7 +58,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppRoutesHelper(): void
 	{
 		$app = $this->app();
-		$app->routes(function (Router $r): void {
+		$app->routes(static function (Router $r): void {
 			$r->get('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
 		});
 
@@ -126,7 +126,7 @@ final class AppRoutingTest extends TestCase
 		$app = $this->app();
 		$app->group(
 			'/albums',
-			function (Group $group) {
+			static function (Group $group) {
 				$ctrl = TestController::class;
 				$group->addRoute(Route::get('/{name}', "{$ctrl}::albumName", 'name'));
 			},
