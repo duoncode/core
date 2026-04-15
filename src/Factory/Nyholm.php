@@ -19,7 +19,8 @@ class Nyholm extends AbstractFactory
 	public function __construct()
 	{
 		try {
-			$factory = $this->factory = new Psr17Factory();
+			$factory = new Psr17Factory();
+			$this->factory = $factory;
 			$this->responseFactory = $factory;
 			$this->streamFactory = $factory;
 			$this->requestFactory = $factory;
