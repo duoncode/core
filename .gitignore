@@ -1,18 +1,16 @@
-*.log
-.cache
-.env
-.php*.cache
-.phpactor.json
-/coverage
+/.coverage
 /data
 /site
 /tmp
 /vendor
 /venv
+*.log
+.cache
+.env
+.php*.cache
+.phpactor.json
 __pycache__
 clover.xml
 composer.lock
-
-# Local config overrides (not committed)
-/phpunit.xml
-/psalm.xml
+phpunit.xml
+psalm.xml
