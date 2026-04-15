@@ -298,7 +298,7 @@ class Response implements ResponseWrapper
 		$server = strtolower($_SERVER['SERVER_SOFTWARE'] ?? '');
 		$this->psrResponse = $this->psrResponse->withStatus($code, $reasonPhrase);
 
-		if (strpos($server, 'nginx') !== false) {
+		if (str_contains($server, 'nginx')) {
 			$this->psrResponse = $this->psrResponse->withAddedHeader('X-Accel-Redirect', $file);
 		} else {
 			$this->psrResponse = $this->psrResponse->withAddedHeader('X-Sendfile', $file);
