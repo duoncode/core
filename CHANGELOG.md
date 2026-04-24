@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0](https://github.com/duonrun/core/releases/tag/0.2.0) (2026-02-21)
+## [0.2.0](https://github.com/duoncode/core/releases/tag/0.2.0) (2026-02-21)
 
 Codename: Jonas
 
@@ -8,7 +8,7 @@ Codename: Jonas
 
 - BREAKING: Replaced `duon/registry` dependency with `duon/container`. The `Registry` class is now `Container` (`Duon\Container\Container`), and `App::registry()` is now `App::container()`.
 
-## [0.1.0](https://github.com/duonrun/core/releases/tag/0.1.0) (2026-01-31)
+## [0.1.0](https://github.com/duoncode/core/releases/tag/0.1.0) (2026-01-31)
 
 Initial release.
 

@@ -2,10 +2,10 @@
 
 <!-- prettier-ignore-start -->
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9befc54495a54078924928e9caccadd8)](https://app.codacy.com/gh/duonrun/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9befc54495a54078924928e9caccadd8)](https://app.codacy.com/gh/duonrun/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
-[![Psalm level](https://shepherd.dev/github/duonrun/core/level.svg?)](https://duonrun.dev/core)
-[![Psalm coverage](https://shepherd.dev/github/duonrun/core/coverage.svg?)](https://shepherd.dev/github/duonrun/core)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9befc54495a54078924928e9caccadd8)](https://app.codacy.com/gh/duoncode/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9befc54495a54078924928e9caccadd8)](https://app.codacy.com/gh/duoncode/core/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+[![Psalm level](https://shepherd.dev/github/duoncode/core/level.svg?)](https://duonrun.dev/core)
+[![Psalm coverage](https://shepherd.dev/github/duoncode/core/coverage.svg?)](https://shepherd.dev/github/duoncode/core)
 <!-- prettier-ignore-end -->
 
 Duon Core is a lightweight and easily extendable >=PHP 8.3 web framework.
