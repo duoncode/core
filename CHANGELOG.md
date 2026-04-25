@@ -8,11 +8,8 @@
 
 ### Added
 
+- Added `Duon\Core\Factory\Discovery` to select an installed Nyholm, Guzzle, or Laminas PSR-17 factory automatically.
 - BrowserSync-backed watch mode to the development server with the `--watch` option, configurable watch patterns, brace/glob expansion, and reload debounce settings.
-
-### Fixed
-
-- development-server watch pattern parsing for comma-separated brace groups.
 
 ## [0.2.0](https://github.com/duoncode/core/releases/tag/0.2.0) (2026-02-21)
 
