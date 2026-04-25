@@ -9,7 +9,6 @@ use Duon\Core\App;
 use Duon\Core\Factory\Factory;
 use Duon\Core\Factory\Nyholm;
 use Duon\Core\Plugin;
-use Duon\Core\Tests\Fixtures\TestConfig;
 use Duon\Core\Tests\Fixtures\TestContainer;
 use Duon\Core\Tests\Fixtures\TestLogger;
 use Duon\Router\Router;
@@ -24,28 +23,26 @@ final class AppTest extends TestCase
 {
 	public function testCreateHelper(): void
 	{
-		$app = App::create(new TestConfig());
+		$app = App::create();
 
 		$this->assertInstanceOf(App::class, $app);
-		$this->assertInstanceOf(TestConfig::class, $app->config());
 		$this->assertInstanceOf(Nyholm::class, $app->factory());
 	}
 
 	public function testConstructorAcceptsCustomFactory(): void
 	{
 		$factory = new Nyholm();
-		$app = new App($factory, new Router(), new Container(), new TestConfig());
+		$app = new App($factory, new Router(), new Container());
 
 		$this->assertSame($factory, $app->factory());
 	}
 
 	public function testHelperMethods(): void
 	{
-		$app = App::create(new TestConfig());
+		$app = App::create();
 
 		$this->assertInstanceOf(Container::class, $app->container());
 		$this->assertInstanceOf(Router::class, $app->router());
-		$this->assertInstanceOf(TestConfig::class, $app->config());
 		$this->assertInstanceOf(Factory::class, $app->factory());
 		$this->assertInstanceOf(Nyholm::class, $app->factory());
 	}
@@ -54,7 +51,7 @@ final class AppTest extends TestCase
 	{
 		$container = new TestContainer();
 		$container->add('external', new stdClass());
-		$app = App::create(new TestConfig(), $container);
+		$app = App::create($container);
 
 		$this->assertInstanceof(stdClass::class, $app->container()->get('external'));
 	}
@@ -69,7 +66,7 @@ final class AppTest extends TestCase
 				return $handler->handle($request);
 			}
 		};
-		$app = App::create(new TestConfig());
+		$app = App::create();
 		$app->middleware($middleware);
 
 		$this->assertSame(1, count($app->getMiddleware()));
@@ -122,7 +119,6 @@ final class AppTest extends TestCase
 		$app = $this->app();
 		$container = $app->container();
 
-		$this->assertInstanceof(TestConfig::class, $container->get(TestConfig::class));
 		$this->assertInstanceof(Router::class, $container->get(Router::class));
 		$this->assertInstanceof(Factory::class, $container->get(Factory::class));
 	}

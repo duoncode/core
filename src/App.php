@@ -7,7 +7,6 @@ namespace Duon\Core;
 use Closure;
 use Duon\Container\Container;
 use Duon\Container\Entry;
-use Duon\Core\ConfigInterface as Config;
 use Duon\Core\Factory\Discovery;
 use Duon\Core\Factory\Factory;
 use Duon\Router\AddsBeforeAfter;
@@ -36,7 +35,6 @@ class App implements RouteAdder
 		protected readonly Factory $factory,
 		protected readonly Router $router,
 		protected readonly Container $container,
-		protected readonly ?Config $config = null,
 	) {
 		$this->dispatcher = new Dispatcher();
 		$this->initializeContainer();
@@ -47,15 +45,12 @@ class App implements RouteAdder
 		$plugin->load($this);
 	}
 
-	public static function create(
-		?Config $config = null,
-		?PsrContainer $container = null,
-	): self {
+	public static function create(?PsrContainer $container = null): self
+	{
 		return new self(
 			Discovery::create(),
 			new Router(),
 			new Container(container: $container),
-			$config,
 		);
 	}
 
@@ -67,11 +62,6 @@ class App implements RouteAdder
 	public function factory(): Factory
 	{
 		return $this->factory;
-	}
-
-	public function config(): ?Config
-	{
-		return $this->config;
 	}
 
 	/** @psalm-param Closure(Router $router):void $creator */
@@ -151,11 +141,6 @@ class App implements RouteAdder
 
 		$this->container->add(Factory::class, $this->factory);
 		$this->container->add($this->factory::class, $this->factory);
-
-		if ($this->config) {
-			$this->container->add(Config::class, $this->config);
-			$this->container->add($this->config::class, $this->config);
-		}
 	}
 
 	public function run(?Request $request = null): Response|false

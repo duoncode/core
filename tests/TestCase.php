@@ -8,7 +8,6 @@ use Duon\Container\Container;
 use Duon\Core\App;
 use Duon\Core\Factory\Factory;
 use Duon\Core\Factory\Nyholm;
-use Duon\Core\Tests\Fixtures\TestConfig;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Psr\Http\Message\ResponseInterface as PsrResponse;
@@ -29,7 +28,7 @@ class TestCase extends BaseTestCase
 
 	public function app(): App
 	{
-		return App::create(new TestConfig());
+		return App::create();
 	}
 
 	public function factory(): Factory
