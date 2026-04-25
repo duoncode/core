@@ -1,5 +1,19 @@
 # Changelog
 
+## [Unreleased](https://github.com/duoncode/core/compare/0.2.0...HEAD)
+
+### Breaking
+
+- Moved the `Duon\Core\Factory` interface to `Duon\Core\Factory\Factory`. PSR-17 factory implementations remain in the `Duon\Core\Factory` namespace.
+
+### Added
+
+- BrowserSync-backed watch mode to the development server with the `--watch` option, configurable watch patterns, brace/glob expansion, and reload debounce settings.
+
+### Fixed
+
+- development-server watch pattern parsing for comma-separated brace groups.
+
 ## [0.2.0](https://github.com/duoncode/core/releases/tag/0.2.0) (2026-02-21)
 
 Codename: Jonas
