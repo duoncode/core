@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace Duon\Core\Tests;
 
+use Duon\Core\Exception\RuntimeException;
 use Duon\Core\Factory\Discovery;
 use Duon\Core\Factory\Factory;
 use Duon\Core\Factory\Nyholm;
+use Duon\Core\Tests\Fixtures\DiscoveryGuzzle;
+use Duon\Core\Tests\Fixtures\DiscoveryLaminas;
+use Duon\Core\Tests\Fixtures\DiscoveryProbe;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 
 final class FactoryDiscoveryTest extends TestCase
 {
@@ -20,94 +26,112 @@ final class FactoryDiscoveryTest extends TestCase
 		$this->assertNotSame($first, $second);
 	}
 
+	#[RunInSeparateProcess]
+	#[PreserveGlobalState(false)]
 	public function testDiscoverySkipsIncompleteNyholmInstall(): void
 	{
-		$result = $this->runIsolatedPhp($this->discoveryBootstrap() . <<<'PHP'
+		$autoloaders = $this->unregisterAutoloaders();
+		$class = null;
 
-			namespace Nyholm\Psr7\Factory {
-				final class Psr17Factory {}
-			}
+		try {
+			$this->loadDiscoveryFiles();
+			$this->loadDiscoveryFixtures();
 
-			namespace GuzzleHttp\Psr7 {
-				final class HttpFactory {}
-			}
+			class_alias(DiscoveryProbe::class, 'Nyholm\\Psr7\\Factory\\Psr17Factory');
+			class_alias(DiscoveryProbe::class, 'GuzzleHttp\\Psr7\\HttpFactory');
+			class_alias(DiscoveryGuzzle::class, 'Duon\\Core\\Factory\\Guzzle');
 
-			namespace Duon\Core\Factory {
-				final class Guzzle extends AbstractFactory
-				{
-					public function serverRequest(): never
-					{
-						throw new \LogicException();
-					}
-				}
-			}
+			$class = Discovery::create()::class;
+		} finally {
+			$this->registerAutoloaders($autoloaders);
+		}
 
-			namespace {
-				echo \Duon\Core\Factory\Discovery::create()::class;
-			}
-			PHP);
-
-		$this->assertSame(0, $result['status'], $result['output']);
-		$this->assertSame('Duon\\Core\\Factory\\Guzzle', $result['output']);
+		$this->assertSame(DiscoveryGuzzle::class, $class);
 	}
 
+	#[RunInSeparateProcess]
+	#[PreserveGlobalState(false)]
+	public function testDiscoveryFallsBackToLaminasInstall(): void
+	{
+		$autoloaders = $this->unregisterAutoloaders();
+		$class = null;
+
+		try {
+			$this->loadDiscoveryFiles();
+			$this->loadDiscoveryFixtures();
+
+			class_alias(DiscoveryProbe::class, 'Laminas\\Diactoros\\RequestFactory');
+			class_alias(DiscoveryLaminas::class, 'Duon\\Core\\Factory\\Laminas');
+
+			$class = Discovery::create()::class;
+		} finally {
+			$this->registerAutoloaders($autoloaders);
+		}
+
+		$this->assertSame(DiscoveryLaminas::class, $class);
+	}
+
+	#[RunInSeparateProcess]
+	#[PreserveGlobalState(false)]
 	public function testDiscoveryFailsWithoutSupportedFactory(): void
 	{
-		$result = $this->runIsolatedPhp($this->discoveryBootstrap() . <<<'PHP'
+		$autoloaders = $this->unregisterAutoloaders();
+		$exceptionClass = null;
+		$message = null;
 
-			namespace {
-				try {
-					\Duon\Core\Factory\Discovery::create();
-					echo 'No exception thrown';
-					exit(1);
-				} catch (\Duon\Core\Exception\RuntimeException $exception) {
-					echo $exception->getMessage();
-				}
+		try {
+			$this->loadDiscoveryFiles();
+
+			try {
+				Discovery::create();
+			} catch (RuntimeException $exception) {
+				$exceptionClass = $exception::class;
+				$message = $exception->getMessage();
 			}
-			PHP);
+		} finally {
+			$this->registerAutoloaders($autoloaders);
+		}
 
-		$this->assertSame(0, $result['status'], $result['output']);
-		$this->assertStringContainsString('No supported PSR-7 implementation found.', $result['output']);
-		$this->assertStringContainsString('nyholm/psr7 with nyholm/psr7-server', $result['output']);
+		$this->assertSame(RuntimeException::class, $exceptionClass);
+		$this->assertStringContainsString('No supported PSR-7 implementation found.', (string) $message);
+		$this->assertStringContainsString('nyholm/psr7 with nyholm/psr7-server', (string) $message);
 	}
 
-	private function discoveryBootstrap(): string
+	private function loadDiscoveryFiles(): void
 	{
 		$root = dirname(__DIR__);
 
-		return sprintf(
-			<<<'PHP'
-				declare(strict_types=1);
-
-				namespace {
-					require %s;
-					require %s;
-					require %s;
-					require %s;
-					require %s;
-				}
-				PHP,
-			var_export($root . '/src/Exception/CoreException.php', true),
-			var_export($root . '/src/Exception/RuntimeException.php', true),
-			var_export($root . '/src/Factory/Factory.php', true),
-			var_export($root . '/src/Factory/AbstractFactory.php', true),
-			var_export($root . '/src/Factory/Discovery.php', true),
-		);
+		require_once $root . '/src/Exception/CoreException.php';
+		require_once $root . '/src/Exception/RuntimeException.php';
+		require_once $root . '/src/Factory/Factory.php';
+		require_once $root . '/src/Factory/AbstractFactory.php';
+		require_once $root . '/src/Factory/Discovery.php';
 	}
 
-	/**
-	 * @return array{status: int, output: string}
-	 */
-	private function runIsolatedPhp(string $code): array
+	private function loadDiscoveryFixtures(): void
 	{
-		$output = [];
-		$status = 0;
+		$root = dirname(__DIR__);
 
-		exec(PHP_BINARY . ' -r ' . escapeshellarg($code) . ' 2>&1', $output, $status);
+		require_once $root . '/tests/Fixtures/DiscoveryProbe.php';
+		require_once $root . '/tests/Fixtures/DiscoveryGuzzle.php';
+		require_once $root . '/tests/Fixtures/DiscoveryLaminas.php';
+	}
 
-		return [
-			'status' => $status,
-			'output' => implode("\n", $output),
-		];
+	private function unregisterAutoloaders(): array
+	{
+		$autoloaders = spl_autoload_functions() ?: [];
+
+		foreach ($autoloaders as $autoload) {
+			spl_autoload_unregister($autoload);
+		}
+
+		return $autoloaders;
+	}
+
+	private function registerAutoloaders(array $autoloaders): void
+	{
+		foreach ($autoloaders as $autoload) {
+			spl_autoload_register($autoload);
+		}
 	}
 }
