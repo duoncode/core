@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Duon\Core\Factory;
 
 use Duon\Core\Exception\ValueError;
-use Duon\Core\Factory;
 use Override;
 use Psr\Http\Message\RequestFactoryInterface as Requestfactory;
 use Psr\Http\Message\RequestInterface as Request;

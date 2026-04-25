@@ -6,6 +6,7 @@ namespace Duon\Core;
 
 use Duon\Core\Exception\FileNotFoundException;
 use Duon\Core\Exception\RuntimeException;
+use Duon\Core\Factory\Factory;
 use Duon\Router\ResponseWrapper;
 use finfo;
 use Override;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Duon\Core;
+namespace Duon\Core\Factory;
 
 use Psr\Http\Message\RequestFactoryInterface as RequestFactory;
 use Psr\Http\Message\RequestInterface as Request;

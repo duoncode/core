@@ -6,7 +6,7 @@ namespace Duon\Core\Tests;
 
 use Duon\Container\Container;
 use Duon\Core\App;
-use Duon\Core\Factory;
+use Duon\Core\Factory\Factory;
 use Duon\Core\Factory\Nyholm;
 use Duon\Core\Tests\Fixtures\TestConfig;
 use Nyholm\Psr7\Factory\Psr17Factory;

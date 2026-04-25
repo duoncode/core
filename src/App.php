@@ -8,6 +8,7 @@ use Closure;
 use Duon\Container\Container;
 use Duon\Container\Entry;
 use Duon\Core\ConfigInterface as Config;
+use Duon\Core\Factory\Factory;
 use Duon\Router\AddsBeforeAfter;
 use Duon\Router\AddsRoutes;
 use Duon\Router\Dispatcher;
