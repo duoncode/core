@@ -8,6 +8,7 @@ use Closure;
 use Duon\Container\Container;
 use Duon\Container\Entry;
 use Duon\Core\ConfigInterface as Config;
+use Duon\Core\Factory\Discovery;
 use Duon\Core\Factory\Factory;
 use Duon\Router\AddsBeforeAfter;
 use Duon\Router\AddsRoutes;
@@ -47,11 +48,15 @@ class App implements RouteAdder
 	}
 
 	public static function create(
-		Factory $factory,
 		?Config $config = null,
 		?PsrContainer $container = null,
 	): self {
-		return new self($factory, new Router(), new Container(container: $container), $config);
+		return new self(
+			Discovery::create(),
+			new Router(),
+			new Container(container: $container),
+			$config,
+		);
 	}
 
 	public function router(): Router

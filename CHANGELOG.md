@@ -5,6 +5,7 @@
 ### Breaking
 
 - Moved the `Duon\Core\Factory` interface to `Duon\Core\Factory\Factory`. PSR-17 factory implementations remain in the `Duon\Core\Factory` namespace.
+- Removed the factory argument from `App::create()`. It now discovers a PSR-17 factory automatically; pass custom factories to the `App` constructor.
 
 ### Added
 

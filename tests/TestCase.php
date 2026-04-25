@@ -29,7 +29,7 @@ class TestCase extends BaseTestCase
 
 	public function app(): App
 	{
-		return App::create(new Nyholm(), new TestConfig());
+		return App::create(new TestConfig());
 	}
 
 	public function factory(): Factory

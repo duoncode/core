@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Duon\Core\Tests;
 
 use Duon\Core\App;
-use Duon\Core\Factory\Nyholm;
 use Duon\Core\Tests\Fixtures\TestConfig;
 use Duon\Router\Group;
 use Duon\Router\Route;
@@ -15,7 +14,7 @@ final class AppRoutingTest extends TestCase
 {
 	public function testStaticRouteHelper(): void
 	{
-		$app = App::create(new Nyholm(), new TestConfig());
+		$app = App::create(new TestConfig());
 		$app->staticRoute('/static', "{$this->root}/public/static", 'static');
 		$app->staticRoute('/unnamedstatic', "{$this->root}/public/static");
 

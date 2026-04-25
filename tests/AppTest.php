@@ -24,12 +24,24 @@ final class AppTest extends TestCase
 {
 	public function testCreateHelper(): void
 	{
-		$this->assertInstanceOf(App::class, App::create(new Nyholm(), new TestConfig()));
+		$app = App::create(new TestConfig());
+
+		$this->assertInstanceOf(App::class, $app);
+		$this->assertInstanceOf(TestConfig::class, $app->config());
+		$this->assertInstanceOf(Nyholm::class, $app->factory());
+	}
+
+	public function testConstructorAcceptsCustomFactory(): void
+	{
+		$factory = new Nyholm();
+		$app = new App($factory, new Router(), new Container(), new TestConfig());
+
+		$this->assertSame($factory, $app->factory());
 	}
 
 	public function testHelperMethods(): void
 	{
-		$app = App::create(new Nyholm(), new TestConfig());
+		$app = App::create(new TestConfig());
 
 		$this->assertInstanceOf(Container::class, $app->container());
 		$this->assertInstanceOf(Router::class, $app->router());
@@ -42,7 +54,7 @@ final class AppTest extends TestCase
 	{
 		$container = new TestContainer();
 		$container->add('external', new stdClass());
-		$app = App::create(new Nyholm(), new TestConfig(), $container);
+		$app = App::create(new TestConfig(), $container);
 
 		$this->assertInstanceof(stdClass::class, $app->container()->get('external'));
 	}
@@ -57,7 +69,7 @@ final class AppTest extends TestCase
 				return $handler->handle($request);
 			}
 		};
-		$app = App::create(new Nyholm(), new TestConfig());
+		$app = App::create(new TestConfig());
 		$app->middleware($middleware);
 
 		$this->assertSame(1, count($app->getMiddleware()));
