@@ -21,7 +21,7 @@
 	"require": {
 		"php": "^8.5",
 		"duon/cli": "^0.1",
-		"duon/container": "dev-main",
+		"duon/container": "^0.3.0",
 		"duon/router": "dev-main",
 		"laminas/laminas-httphandlerrunner": "^2.4",
 		"psr/http-factory": "^1.0",
