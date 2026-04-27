@@ -37,10 +37,7 @@
 	"autoload": {
 		"psr-4": {
 			"Duon\\Core\\": "src"
-		},
-		"files": [
-			"src/functions.php"
-		]
+		}
 	},
 	"autoload-dev": {
 		"psr-4": {
