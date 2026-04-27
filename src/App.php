@@ -16,6 +16,7 @@ use Duon\Router\Group;
 use Duon\Router\Route;
 use Duon\Router\RouteAdder;
 use Duon\Router\Router;
+use Duon\Router\RoutingHandler;
 use Override;
 use Psr\Container\ContainerInterface as PsrContainer;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -146,10 +147,13 @@ class App implements RouteAdder
 	public function run(?Request $request = null): Response|false
 	{
 		$request ??= $this->factory->serverRequest();
-		$route = $this->router->match($request);
 		$this->dispatcher->setBeforeHandlers($this->beforeHandlers);
 		$this->dispatcher->setAfterHandlers($this->afterHandlers);
-		$response = $this->dispatcher->dispatch($request, $route, $this->container);
+		$response = new RoutingHandler(
+			$this->router,
+			$this->dispatcher,
+			$this->container,
+		)->handle($request);
 
 		return new Emitter()->emit($response) ? $response : false;
 	}
