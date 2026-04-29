@@ -11,7 +11,7 @@ use Override;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 
-/** @psalm-api */
+/** @api */
 class Nyholm extends AbstractFactory
 {
 	protected Psr17Factory $factory;

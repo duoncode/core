@@ -11,7 +11,7 @@ use Override;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 
-/** @psalm-api */
+/** @api */
 class Guzzle extends AbstractFactory
 {
 	public function __construct()

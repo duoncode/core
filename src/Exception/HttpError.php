@@ -10,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface as PsrServerRequest;
 use Throwable;
 
 /**
- * @psalm-api
+ * @api
  *
  * @psalm-consistent-constructor
  */

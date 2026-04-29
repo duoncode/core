@@ -13,7 +13,7 @@ use Psr\Http\Message\StreamInterface as PsrStream;
 use Psr\Http\Message\UploadedFileInterface as PsrUploadedFile;
 use Psr\Http\Message\UriInterface as PsrUri;
 
-/** @psalm-api */
+/** @api */
 class Request implements RequestWrapper
 {
 	public function __construct(
@@ -217,7 +217,7 @@ class Request implements RequestWrapper
 	 *
 	 * @no-named-arguments
 	 *
-	 * @psalm-param list<string>|string ...$keys
+	 * @param list<string>|string ...$keys
 	 *
 	 * @throws OutOfBoundsException RuntimeException
 	 */
@@ -262,7 +262,7 @@ class Request implements RequestWrapper
 	 *
 	 * @no-named-arguments
 	 *
-	 * @psalm-param list<non-empty-string>|string ...$keys
+	 * @param list<non-empty-string>|string ...$keys
 	 *
 	 * @throws OutOfBoundsException RuntimeException
 	 */
@@ -279,7 +279,7 @@ class Request implements RequestWrapper
 
 		foreach ($keys as $key) {
 			if (isset($files[$key])) {
-				/** @var array|PsrUploadedFile */
+				/** @var array|PsrUploadedFile $files */
 				$files = $files[$key];
 				$i++;
 
@@ -320,7 +320,7 @@ class Request implements RequestWrapper
 		throw new OutOfBoundsException("{$error}: '{$key}'");
 	}
 
-	/** @psalm-param non-empty-list<string> $keys */
+	/** @param non-empty-list<string> $keys */
 	private function formatKeys(array $keys): string
 	{
 		return implode('', array_map(
@@ -330,9 +330,9 @@ class Request implements RequestWrapper
 	}
 
 	/**
-	 * @psalm-param list<list<string>|string> $keys
+	 * @param list<list<string>|string> $keys
 	 *
-	 * @psalm-return list<string>
+	 * @return list<string>
 	 */
 	private function validateKeys(array $keys): array
 	{
@@ -343,7 +343,7 @@ class Request implements RequestWrapper
 			$keys = $keys[0];
 		}
 
-		/** @psalm-var list<string> */
+		/** @var list<string> $keys */
 		return $keys;
 	}
 }

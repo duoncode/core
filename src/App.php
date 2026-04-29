@@ -24,7 +24,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Log\LoggerInterface as Logger;
 
-/** @psalm-api */
+/** @api */
 class App implements RouteAdder
 {
 	use AddsRoutes;
@@ -65,7 +65,7 @@ class App implements RouteAdder
 		return $this->factory;
 	}
 
-	/** @psalm-param Closure(Router $router):void $creator */
+	/** @param Closure(Router): void $creator */
 	public function routes(Closure $creator, string $cacheFile = '', bool $shouldCache = true): void
 	{
 		$this->router->routes($creator, $cacheFile, $shouldCache);
@@ -127,8 +127,8 @@ class App implements RouteAdder
 	}
 
 	/**
-	 * @psalm-param non-empty-string $key
-	 * @psalm-param class-string|object $value
+	 * @param non-empty-string $key
+	 * @param class-string|object $value
 	 */
 	public function register(string $key, object|string $value): Entry
 	{

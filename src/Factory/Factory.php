@@ -17,7 +17,7 @@ use Psr\Http\Message\UploadedFileInterface as UploadedFile;
 use Psr\Http\Message\UriFactoryInterface as UriFactory;
 use Psr\Http\Message\UriInterface as Uri;
 
-/** @psalm-api */
+/** @api */
 interface Factory
 {
 	public function serverRequest(): ServerRequest;

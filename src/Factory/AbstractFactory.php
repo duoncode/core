@@ -20,7 +20,7 @@ use Psr\Http\Message\UriFactoryInterface as UriFactory;
 use Psr\Http\Message\UriInterface as Uri;
 use Stringable;
 
-/** @psalm-api */
+/** @api */
 abstract class AbstractFactory implements Factory
 {
 	protected RequestFactory $requestFactory;

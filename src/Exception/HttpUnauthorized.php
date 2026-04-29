@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Duon\Core\Exception;
 
-/** @psalm-api */
+/** @api */
 class HttpUnauthorized extends HttpError
 {
 	protected const int code = 401;

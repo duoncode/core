@@ -10,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-/** @psalm-api */
+/** @api */
 abstract class Middleware implements MiddlewareInterface
 {
 	#[Override]

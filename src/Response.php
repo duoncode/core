@@ -16,7 +16,7 @@ use Psr\Http\Message\StreamInterface as PsrStream;
 use Stringable;
 use Traversable;
 
-/** @psalm-api */
+/** @api */
 class Response implements ResponseWrapper
 {
 	public function __construct(
