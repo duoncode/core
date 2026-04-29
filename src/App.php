@@ -65,12 +65,6 @@ class App implements RouteAdder
 		return $this->factory;
 	}
 
-	/** @param Closure(Router): void $creator */
-	public function routes(Closure $creator): void
-	{
-		$this->router->routes($creator);
-	}
-
 	#[Override]
 	public function addRoute(Route $route): Route
 	{

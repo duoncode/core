@@ -7,7 +7,6 @@ namespace Duon\Core\Tests;
 use Duon\Core\App;
 use Duon\Router\Group;
 use Duon\Router\Route;
-use Duon\Router\Router;
 
 final class AppRoutingTest extends TestCase
 {
@@ -48,16 +47,6 @@ final class AppRoutingTest extends TestCase
 	{
 		$app = $this->app();
 		$app->any('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
-
-		$this->assertSame('/albums', $app->router()->url('albums'));
-	}
-
-	public function testAppRoutesHelper(): void
-	{
-		$app = $this->app();
-		$app->routes(static function (Router $r): void {
-			$r->get('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
-		});
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
