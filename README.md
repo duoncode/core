@@ -31,6 +31,7 @@ use Duon\Router\Group;
 $app = App::create();
 
 $app->get('/health', [HealthController::class, 'show'], 'health');
+$app->map(['GET', 'POST'], '/login', [AuthController::class, 'login'], 'login');
 $app->any('/webhook', $webhook, 'webhook');
 
 $app->group('/admin', function (Group $admin) use ($auth): void {

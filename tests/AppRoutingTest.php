@@ -51,6 +51,20 @@ final class AppRoutingTest extends TestCase
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
 
+	public function testAppMapHelper(): void
+	{
+		$app = $this->app();
+		$route = $app->map(
+			['GET', 'POST'],
+			'/login',
+			'Chuck\Tests\Fixtures\TestController::textView',
+			'login',
+		);
+
+		$this->assertSame(['GET', 'POST'], $route->methods());
+		$this->assertSame('/login', $app->router()->url('login'));
+	}
+
 	public function testAppGetHelper(): void
 	{
 		$app = $this->app();
