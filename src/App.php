@@ -66,9 +66,9 @@ class App implements RouteAdder
 	}
 
 	/** @param Closure(Router): void $creator */
-	public function routes(Closure $creator, string $cacheFile = '', bool $shouldCache = true): void
+	public function routes(Closure $creator): void
 	{
-		$this->router->routes($creator, $cacheFile, $shouldCache);
+		$this->router->routes($creator);
 	}
 
 	#[Override]
