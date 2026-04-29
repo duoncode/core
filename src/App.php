@@ -12,7 +12,6 @@ use Duon\Core\Factory\Factory;
 use Duon\Router\AddsBeforeAfter;
 use Duon\Router\AddsRoutes;
 use Duon\Router\Dispatcher;
-use Duon\Router\Group;
 use Duon\Router\Route;
 use Duon\Router\RouteAdder;
 use Duon\Router\Router;
@@ -76,8 +75,8 @@ class App implements RouteAdder
 		string $patternPrefix,
 		Closure $createClosure,
 		string $namePrefix = '',
-	): Group {
-		return $this->router->group($patternPrefix, $createClosure, $namePrefix);
+	): void {
+		$this->router->group($patternPrefix, $createClosure, $namePrefix);
 	}
 
 	public function staticRoute(
