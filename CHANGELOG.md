@@ -7,10 +7,12 @@
 - Moved the `Duon\Core\Factory` interface to `Duon\Core\Factory\Factory`. PSR-17 factory implementations remain in the `Duon\Core\Factory` namespace.
 - Removed app-level configuration support, including `ConfigInterface`, `AddsConfigInterface`, `App::config()`, and config arguments in `App::__construct()` and `App::create()`.
 - Removed the factory argument from `App::create()`. It now discovers a PSR-17 factory automatically; pass custom factories to the `App` constructor.
+- Updated route helpers to match `duon/router`: use `any()` for methodless routes instead of `route()`, and call `routes()` without cache arguments.
 
 ### Added
 
 - Added `Duon\Core\Factory\Discovery` to select an installed Nyholm, Guzzle, or Laminas PSR-17 factory automatically.
+- `App::group()` now delegates to the router callback group API.
 - BrowserSync-backed watch mode to the development server with the `--watch` option, configurable watch patterns, brace/glob expansion, and reload debounce settings.
 
 ## [0.2.0](https://github.com/duoncode/core/releases/tag/0.2.0) (2026-02-21)

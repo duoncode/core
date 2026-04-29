@@ -20,6 +20,28 @@ It features:
 - Convenience wrappers for PSR request, response and middleware.
 - Logging.
 
+## Routing
+
+`App` exposes the router's common route helpers and runs requests through the router `RoutingHandler` internally.
+
+```php
+use Duon\Core\App;
+use Duon\Router\Group;
+
+$app = App::create();
+
+$app->get('/health', [HealthController::class, 'show'], 'health');
+$app->any('/webhook', $webhook, 'webhook');
+
+$app->group('/admin', function (Group $admin) use ($auth): void {
+	$admin->middleware($auth);
+	$admin->controller(AdminController::class);
+
+	$admin->get('', 'index', 'admin.index');
+	$admin->post('/login', 'login', 'admin.login');
+});
+```
+
 Supported PSRs:
 
 - PSR-3 Logger Interface
