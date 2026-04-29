@@ -26,13 +26,13 @@ final class AppRoutingTest extends TestCase
 	public function testAppAddRouteAndGroupHelpers(): void
 	{
 		$app = $this->app();
-		$route = new Route('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$route = new Route('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 		$app->addRoute($route);
 		$app->group(
 			'/albums',
 			static function (Group $group): void {
-				$ctrl = TestController::class;
-				$group->get('/{name}', "{$ctrl}::albumName", 'name');
+				$ctrl = Fixtures\TestController::class;
+				$group->get('/{name}', [$ctrl, 'textView'], 'name');
 			},
 			'albums:',
 		);
@@ -46,7 +46,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppAnyHelper(): void
 	{
 		$app = $this->app();
-		$app->any('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->any('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
@@ -57,7 +57,7 @@ final class AppRoutingTest extends TestCase
 		$route = $app->map(
 			['GET', 'POST'],
 			'/login',
-			'Chuck\Tests\Fixtures\TestController::textView',
+			[Fixtures\TestController::class, 'textView'],
 			'login',
 		);
 
@@ -68,7 +68,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppGetHelper(): void
 	{
 		$app = $this->app();
-		$app->get('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->get('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
@@ -76,7 +76,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppPostHelper(): void
 	{
 		$app = $this->app();
-		$app->post('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->post('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
@@ -84,7 +84,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppPutHelper(): void
 	{
 		$app = $this->app();
-		$app->put('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->put('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
@@ -92,7 +92,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppPatchHelper(): void
 	{
 		$app = $this->app();
-		$app->patch('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->patch('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
@@ -100,7 +100,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppDeleteHelper(): void
 	{
 		$app = $this->app();
-		$app->delete('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->delete('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
@@ -108,7 +108,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppHeadHelper(): void
 	{
 		$app = $this->app();
-		$app->head('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->head('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
@@ -116,7 +116,7 @@ final class AppRoutingTest extends TestCase
 	public function testAppOptionsHelper(): void
 	{
 		$app = $this->app();
-		$app->options('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->options('/albums', [Fixtures\TestController::class, 'textView'], 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}
@@ -127,8 +127,8 @@ final class AppRoutingTest extends TestCase
 		$app->group(
 			'/albums',
 			static function (Group $group): void {
-				$ctrl = TestController::class;
-				$group->get('/{name}', "{$ctrl}::albumName", 'name');
+				$ctrl = Fixtures\TestController::class;
+				$group->get('/{name}', [$ctrl, 'textView'], 'name');
 			},
 			'albums:',
 		);

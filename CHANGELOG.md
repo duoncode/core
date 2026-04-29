@@ -7,7 +7,7 @@
 - Moved the `Duon\Core\Factory` interface to `Duon\Core\Factory\Factory`. PSR-17 factory implementations remain in the `Duon\Core\Factory` namespace.
 - Removed app-level configuration support, including `ConfigInterface`, `AddsConfigInterface`, `App::config()`, and config arguments in `App::__construct()` and `App::create()`.
 - Removed the factory argument from `App::create()`. It now discovers a PSR-17 factory automatically; pass custom factories to the `App` constructor.
-- Updated route helpers to match `duon/router`: use `any()` for methodless routes instead of `route()`, use `map()` for explicit method lists, remove the passthrough `routes()` helper, remove the `addGroup()` helper, and make `group()` return `void`.
+- Updated route helpers to match `duon/router`: use `any()` for methodless routes instead of `route()`, use `map()` for explicit method lists, use callable controller arrays, remove the passthrough `routes()` helper, remove the `addGroup()` helper, and make `group()` return `void`.
 
 ### Added
 
