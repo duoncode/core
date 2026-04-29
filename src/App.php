@@ -83,15 +83,13 @@ class App implements RouteAdder
 		$this->router->addGroup($group);
 	}
 
+	#[Override]
 	public function group(
 		string $patternPrefix,
 		Closure $createClosure,
 		string $namePrefix = '',
 	): Group {
-		$group = new Group($patternPrefix, $createClosure, $namePrefix);
-		$this->router->addGroup($group);
-
-		return $group;
+		return $this->router->group($patternPrefix, $createClosure, $namePrefix);
 	}
 
 	public function staticRoute(

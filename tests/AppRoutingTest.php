@@ -24,20 +24,19 @@ final class AppRoutingTest extends TestCase
 		));
 	}
 
-	public function testAppAddRouteAddGroupHelper(): void
+	public function testAppAddRouteAndGroupHelpers(): void
 	{
 		$app = $this->app();
 		$route = new Route('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
-		$group = new Group(
+		$app->addRoute($route);
+		$app->group(
 			'/albums',
-			static function (Group $group) {
+			static function (Group $group): void {
 				$ctrl = TestController::class;
-				$group->addRoute(Route::get('/{name}', "{$ctrl}::albumName", 'name'));
+				$group->get('/{name}', "{$ctrl}::albumName", 'name');
 			},
 			'albums:',
 		);
-		$app->addRoute($route);
-		$app->addGroup($group);
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 		$this->assertSame('/albums/symbolic', $app->router()->url('albums:name', [
@@ -124,9 +123,9 @@ final class AppRoutingTest extends TestCase
 		$app = $this->app();
 		$app->group(
 			'/albums',
-			static function (Group $group) {
+			static function (Group $group): void {
 				$ctrl = TestController::class;
-				$group->addRoute(Route::get('/{name}', "{$ctrl}::albumName", 'name'));
+				$group->get('/{name}', "{$ctrl}::albumName", 'name');
 			},
 			'albums:',
 		);
