@@ -72,12 +72,6 @@ class App implements RouteAdder
 	}
 
 	#[Override]
-	public function addGroup(Group $group): void
-	{
-		$this->router->addGroup($group);
-	}
-
-	#[Override]
 	public function group(
 		string $patternPrefix,
 		Closure $createClosure,
