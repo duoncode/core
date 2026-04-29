@@ -44,10 +44,10 @@ final class AppRoutingTest extends TestCase
 		]));
 	}
 
-	public function testAppRouteHelper(): void
+	public function testAppAnyHelper(): void
 	{
 		$app = $this->app();
-		$app->route('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
+		$app->any('/albums', 'Chuck\Tests\Fixtures\TestController::textView', 'albums');
 
 		$this->assertSame('/albums', $app->router()->url('albums'));
 	}

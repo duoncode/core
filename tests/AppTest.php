@@ -76,7 +76,7 @@ final class AppTest extends TestCase
 	public function testAppRun(): void
 	{
 		$app = $this->app();
-		$app->route('/', 'Duon\Core\Tests\Fixtures\TestController::textView');
+		$app->any('/', 'Duon\Core\Tests\Fixtures\TestController::textView');
 		ob_start();
 		$app->run($this->request());
 		$output = ob_get_contents();
